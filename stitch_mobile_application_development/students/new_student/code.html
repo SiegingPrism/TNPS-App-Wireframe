@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Student Registration - TNPS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#191c1e",
+                    "secondary-fixed": "#e3dfff",
+                    "on-primary-fixed-variant": "#2f2ebe",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#6ffbbe",
+                    "surface-container-low": "#f2f4f6",
+                    "surface-bright": "#f7f9fb",
+                    "surface-variant": "#e0e3e5",
+                    "surface-container": "#eceef0",
+                    "outline-variant": "#c7c4d7",
+                    "inverse-primary": "#c0c1ff",
+                    "secondary-fixed-dim": "#c4c1fb",
+                    "secondary-container": "#c7c3fe",
+                    "tertiary-container": "#00885d",
+                    "on-primary-fixed": "#07006c",
+                    "on-tertiary-fixed": "#002113",
+                    "on-error": "#ffffff",
+                    "on-background": "#191c1e",
+                    "surface-tint": "#494bd6",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#464554",
+                    "inverse-on-surface": "#eff1f3",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#d8dadc",
+                    "primary-fixed": "#e1e0ff",
+                    "surface-container-high": "#e6e8ea",
+                    "outline": "#767586",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#514f81",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2d3133",
+                    "secondary": "#5b598c",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "primary-container": "#6063ee",
+                    "primary": "#4648d4",
+                    "background": "#f7f9fb",
+                    "surface": "#f7f9fb",
+                    "on-tertiary-container": "#000703",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "tertiary": "#006c49",
+                    "on-primary-container": "#fffbff",
+                    "on-secondary-fixed-variant": "#444173",
+                    "on-secondary-fixed": "#181445"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch-target": "2.75rem",
+                    "card-padding": "1.25rem",
+                    "container-margin": "1rem",
+                    "section-gap": "1.5rem",
+                    "stack-gap": "1rem"
+            },
+            "fontFamily": {
+                    "label-lg": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f7f9fb;
+            color: #191c1e;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-shadow {
+            box-shadow: 0px 4px 20px rgba(0,0,0,0.05);
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            background: rgba(247, 249, 251, 0.8);
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #4648d4 !important;
+            box-shadow: 0 0 0 2px rgba(70, 72, 212, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="w-full top-0 sticky bg-surface dark:bg-on-background shadow-sm z-50 glass-header">
+<div class="flex justify-between items-center px-container-margin h-touch-target w-full">
+<div class="flex items-center gap-3">
+<button onclick="window.location.href='../../admindashboard/code.html'" class="p-2 hover:bg-surface-variant/50 rounded-full transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 28px;">security</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">TNPS</span>
+</div>
+</div>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden border-2 border-primary/20">
+<img class="w-full h-full object-cover" data-alt="A professional high-resolution headshot of a campus administrator in a modern office setting. The person has a friendly but authoritative expression, representing institutional trust. The lighting is soft and natural, with a clean architectural background. The overall aesthetic is corporate, professional, and minimalist, utilizing a bright light-mode color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdniDMI_SxG-J5nijageMD9yK6XuAjk1hw3j6QBPHlXyUbqmk4sfn0yIvRHnqI68DJc4dqWuoDeWYgEmz6m3-5BhrZxz3lmGjZMaPFB79WxtmRurWK1WrHt39tFE5YdE0fIxCSoCyIIejjdFgCxbV5LSUiJtQGmB3luVe91ZbNJw_fG9h7GnB7_IoKhz8wjQjnOY-veOREyBdj7NnEPjM22oIuhScH0g7ws9ZrioHgKHx3LxUAOAop"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-container-margin pt-8 pb-32">
+<!-- Page Title & Intro -->
+<div class="mb-section-gap">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-2">New Student Registration</h1>
+<p class="text-on-surface-variant font-body-lg text-body-lg">Enter student details to grant campus access and allocate institutional resources.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Form Container -->
+<div class="lg:col-span-8">
+<form class="bg-surface-container-lowest custom-shadow rounded-xl p-card-padding border border-surface-variant/30 space-y-6" id="registrationForm">
+<!-- Section: Identity -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 border-b border-surface-variant pb-2">
+<span class="material-symbols-outlined text-primary">badge</span>
+<h2 class="font-headline-sm text-headline-sm">Basic Identity</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant block">Full Name</label>
+<input class="w-full h-12 px-4 rounded-lg border border-outline-variant bg-white focus:ring-0 transition-all" placeholder="e.g. Alexander Pierce" required="" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant block">Student UID</label>
+<input class="w-full h-12 px-4 rounded-lg border border-outline-variant bg-white focus:ring-0 transition-all" placeholder="e.g. STU-2024-001" required="" type="text"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant block">Department</label>
+<select class="w-full h-12 px-4 rounded-lg border border-outline-variant bg-white focus:ring-0 transition-all appearance-none" required="">
+<option disabled="" selected="" value="">Select Department</option>
+<option>School of Engineering</option>
+<option>Business Administration</option>
+<option>Department of Arts & Sciences</option>
+<option>Medical Sciences</option>
+<option>Design & Architecture</option>
+</select>
+</div>
+</div>
+<!-- Section: Contact -->
+<div class="space-y-4 pt-4">
+<div class="flex items-center gap-2 border-b border-surface-variant pb-2">
+<span class="material-symbols-outlined text-primary">contact_mail</span>
+<h2 class="font-headline-sm text-headline-sm">Contact Information</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant block">Contact Number</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">+1</span>
+<input class="w-full h-12 pl-12 pr-4 rounded-lg border border-outline-variant bg-white focus:ring-0 transition-all" placeholder="(555) 000-0000" required="" type="tel"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant block">Email Address</label>
+<input class="w-full h-12 px-4 rounded-lg border border-outline-variant bg-white focus:ring-0 transition-all" placeholder="student@university.edu" required="" type="email"/>
+</div>
+</div>
+</div>
+<!-- Section: Accommodation -->
+<div class="space-y-4 pt-4">
+<div class="flex items-center gap-2 border-b border-surface-variant pb-2">
+<span class="material-symbols-outlined text-primary">home_work</span>
+<h2 class="font-headline-sm text-headline-sm">Residence Type</h2>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<label class="relative flex flex-col items-center justify-center p-4 border-2 rounded-xl cursor-pointer transition-all hover:bg-surface-container-low group" id="label-day-scholar">
+<input checked="" class="hidden" name="residence" onchange="toggleHostelFields(false)" type="radio" value="day-scholar"/>
+<span class="material-symbols-outlined text-on-surface-variant group-[.active]:text-primary transition-colors" style="font-size: 32px;">directions_walk</span>
+<span class="font-label-lg text-label-lg mt-2">Day Scholar</span>
+<div class="absolute inset-0 rounded-xl border-primary opacity-0 radio-indicator pointer-events-none"></div>
+</label>
+<label class="relative flex flex-col items-center justify-center p-4 border-2 rounded-xl cursor-pointer transition-all hover:bg-surface-container-low group" id="label-hosteler">
+<input class="hidden" name="residence" onchange="toggleHostelFields(true)" type="radio" value="hosteler"/>
+<span class="material-symbols-outlined text-on-surface-variant group-[.active]:text-primary transition-colors" style="font-size: 32px;">apartment</span>
+<span class="font-label-lg text-label-lg mt-2">Hosteler</span>
+<div class="absolute inset-0 rounded-xl border-primary opacity-0 radio-indicator pointer-events-none"></div>
+</label>
+</div>
+<!-- Conditional Fields -->
+<div class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-primary-fixed/30 rounded-xl border border-primary/10 animate-in fade-in slide-in-from-top-2 duration-300" id="hostelFields">
+<div class="space-y-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant block">Block / Hall</label>
+<select class="w-full h-12 px-4 rounded-lg border border-outline-variant bg-white focus:ring-0 transition-all appearance-none">
+<option disabled="" selected="" value="">Select Block</option>
+<option>Edison Hall (Block A)</option>
+<option>Tesla Towers (Block B)</option>
+<option>Curie Commons (Block C)</option>
+<option>Turing Terrace (Block D)</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant block">Room Allocation</label>
+<input class="w-full h-12 px-4 rounded-lg border border-outline-variant bg-white focus:ring-0 transition-all" placeholder="e.g. 402-B" type="text"/>
+</div>
+</div>
+</div>
+<!-- Register Action -->
+<div class="pt-6">
+<button class="w-full h-12 bg-primary text-on-primary rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all shadow-md" type="submit">
+<span class="material-symbols-outlined">how_to_reg</span>
+                            Register Student
+                        </button>
+</div>
+</form>
+</div>
+<!-- Sidebar / Info Panel -->
+<div class="lg:col-span-4 space-y-6">
+<!-- ID Preview Card -->
+<div class="bg-primary p-card-padding rounded-2xl text-on-primary relative overflow-hidden shadow-xl h-64">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm">Student ID</h3>
+<p class="opacity-80 text-label-md uppercase tracking-widest">Preview</p>
+</div>
+<span class="material-symbols-outlined" style="font-size: 32px;">contactless</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-lg bg-white/20 flex items-center justify-center backdrop-blur-md border border-white/30">
+<span class="material-symbols-outlined" style="font-size: 40px;">person</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md leading-tight" id="previewName">Student Name</div>
+<div class="opacity-70 font-label-lg" id="previewID">ID NO: Pending</div>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div class="text-label-md opacity-60">TNPS VERIFIED</div>
+<div class="w-12 h-12 bg-white rounded-md p-1">
+<span class="material-symbols-outlined text-primary w-full h-full flex items-center justify-center" style="font-size: 32px;">qr_code_2</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Guidance Card -->
+<div class="bg-surface-container-high rounded-xl p-card-padding border border-outline-variant/30">
+<h3 class="font-headline-sm text-headline-sm mb-4">Registration Policy</h3>
+<ul class="space-y-4">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">check_circle</span>
+<span class="text-on-surface-variant font-body-md text-body-md">Biometric data will be captured at the central security desk after registration.</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">check_circle</span>
+<span class="text-on-surface-variant font-body-md text-body-md">A verification email will be sent to the student's institutional address.</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">check_circle</span>
+<span class="text-on-surface-variant font-body-md text-body-md">Hostel allocations are subject to availability and warden approval.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile only) -->
+
+<script>
+        function toggleHostelFields(show) {
+            const fields = document.getElementById('hostelFields');
+            const dayLabel = document.getElementById('label-day-scholar');
+            const hostelLabel = document.getElementById('label-hosteler');
+            
+            if (show) {
+                fields.classList.remove('hidden');
+                hostelLabel.classList.add('border-primary', 'bg-primary-container/10', 'active');
+                dayLabel.classList.remove('border-primary', 'bg-primary-container/10', 'active');
+                dayLabel.classList.add('border-outline-variant');
+            } else {
+                fields.classList.add('hidden');
+                dayLabel.classList.add('border-primary', 'bg-primary-container/10', 'active');
+                hostelLabel.classList.remove('border-primary', 'bg-primary-container/10', 'active');
+                hostelLabel.classList.add('border-outline-variant');
+            }
+        }
+
+        // Initialize UI state
+        toggleHostelFields(false);
+
+        // Simple ID Preview Update
+        const nameInput = document.querySelector('input[placeholder="e.g. Alexander Pierce"]');
+        const idInput = document.querySelector('input[placeholder="e.g. STU-2024-001"]');
+        const previewName = document.getElementById('previewName');
+        const previewID = document.getElementById('previewID');
+
+        nameInput.addEventListener('input', (e) => {
+            previewName.textContent = e.target.value || "Student Name";
+        });
+
+        idInput.addEventListener('input', (e) => {
+            previewID.textContent = e.target.value ? `ID NO: ${e.target.value}` : "ID NO: Pending";
+        });
+
+        // Form submission micro-interaction
+        document.getElementById('registrationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalHTML = btn.innerHTML;
+            
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin">sync</span> Registering...`;
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = `<span class="material-symbols-outlined">check_circle</span> Success!`;
+                btn.classList.replace('bg-primary', 'bg-tertiary-container');
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.replace('bg-tertiary-container', 'bg-primary');
+                    btn.disabled = false;
+                    e.target.reset();
+                    previewName.textContent = "Student Name";
+                    previewID.textContent = "ID NO: Pending";
+                }, 2000);
+            }, 1500);
+        });
+    </script>
+</body></html>

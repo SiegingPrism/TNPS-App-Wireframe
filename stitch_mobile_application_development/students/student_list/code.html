@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student List - TNPS Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#191c1e",
+                    "secondary-fixed": "#e3dfff",
+                    "on-primary-fixed-variant": "#2f2ebe",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#6ffbbe",
+                    "surface-container-low": "#f2f4f6",
+                    "surface-bright": "#f7f9fb",
+                    "surface-variant": "#e0e3e5",
+                    "surface-container": "#eceef0",
+                    "outline-variant": "#c7c4d7",
+                    "inverse-primary": "#c0c1ff",
+                    "secondary-fixed-dim": "#c4c1fb",
+                    "secondary-container": "#c7c3fe",
+                    "tertiary-container": "#00885d",
+                    "on-primary-fixed": "#07006c",
+                    "on-tertiary-fixed": "#002113",
+                    "on-error": "#ffffff",
+                    "on-background": "#191c1e",
+                    "surface-tint": "#494bd6",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#464554",
+                    "inverse-on-surface": "#eff1f3",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#d8dadc",
+                    "primary-fixed": "#e1e0ff",
+                    "surface-container-high": "#e6e8ea",
+                    "outline": "#767586",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#514f81",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#2d3133",
+                    "secondary": "#5b598c",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "primary-container": "#6063ee",
+                    "primary": "#4648d4",
+                    "background": "#f7f9fb",
+                    "surface": "#f7f9fb",
+                    "on-tertiary-container": "#000703",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "tertiary": "#006c49",
+                    "on-primary-container": "#fffbff",
+                    "on-secondary-fixed-variant": "#444173",
+                    "on-secondary-fixed": "#181445"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch-target": "2.75rem",
+                    "card-padding": "1.25rem",
+                    "container-margin": "1rem",
+                    "section-gap": "1.5rem",
+                    "stack-gap": "1rem"
+            },
+            "fontFamily": {
+                    "label-lg": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md text-body-md min-h-screen pb-20">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky bg-surface dark:bg-on-background shadow-sm flex justify-between items-center px-container-margin h-touch-target z-50">
+<div class="flex items-center gap-3">
+<a href="../../admindashboard/code.html" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-high transition-colors active:opacity-80 cursor-pointer">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">arrow_back</span>
+</a>
+<span class="material-symbols-outlined text-primary dark:text-inverse-primary" data-icon="security">security</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">TNPS</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a campus security administrator in a modern office environment. The lighting is bright and clear, reflecting a high-trust institutional setting. The individual is wearing a crisp white shirt, and the background is a blurred office with deep indigo and purple accents consistent with the TNPS brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5fOy3rsKAVS8gVEkH0N4TZBsAzEDB4Voqn-_ervaRGftPV9C3oWA1EeGqh5hMA25-OWYwmp9HWHAwjrjEVAmL4C3-groFFPdw6KOx8JsH4Ta76T6xbrZqrDJQaJOxZ8GacuLmE96lb6AtLUaSbtXGKyv4OPbx_SlaCELPfHbK3o68fPdpbG3vBGBQTd9vzE4owd5onVaA436TSLeoGc4vTw0zGUDbBuTMwFJczajQWBiQWGRXV0rB"/>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-container-margin pt-6 space-y-6">
+<!-- Search and Action Row -->
+<section class="space-y-4">
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-on-surface-variant group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full h-12 pl-12 pr-4 bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md" placeholder="Search by name, UID, or department..." type="text"/>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+<button class="flex-none px-5 py-2 bg-primary text-on-primary rounded-full font-label-lg text-label-lg shadow-sm hover:opacity-90 active:scale-95 transition-all">
+                    All Students
+                </button>
+<button class="flex-none px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-lg text-label-lg hover:bg-surface-variant transition-colors">
+                    Hostelers
+                </button>
+<button class="flex-none px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-lg text-label-lg hover:bg-surface-variant transition-colors">
+                    Day Scholars
+                </button>
+<button class="flex-none px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-lg text-label-lg hover:bg-surface-variant transition-colors">
+                    CS Department
+                </button>
+<button class="flex-none px-5 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-lg text-label-lg hover:bg-surface-variant transition-colors">
+                    Final Year
+                </button>
+</div>
+</section>
+<!-- Student Grid/List -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Student Card 1 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-transparent hover:border-primary/20 hover:shadow-lg transition-all cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist portrait of a university student with a friendly expression. The lighting is natural and soft, set against a neutral light gray background. The overall aesthetic is professional and high-key, suitable for an institutional identification card." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8kucooWc7LG4nQ-y5p1OAL48vpzpoRVKHrb6uCxQ2NRN2LfPXnQZfqcROtBzrvgObk656G1Fdbi4eCtCCUsgzL9t16LlAK8Sw1DU1irVWG34s6m_B546FxOfPRDK6G8xkCgUjdLCiD40eCmYVMr_FQE2j2S5i_sbeKpdyUS24aHGYJLWXrUtYFGpU3d-ugNhknNnq-iF6_yhb8S6rIqKoiLzwf3ZoepzWVk21n0eNH4dRj5JE14h0"/>
+</div>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary-container border-2 border-surface-container-lowest rounded-full" title="In Campus"></div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Aditya Sharma</h3>
+<p class="text-on-surface-variant font-label-md text-label-md tracking-wider">UID: 20BCS1024</p>
+</div>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<div class="mt-4 flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface-variant">DEPARTMENT</span>
+<span class="font-body-md text-body-md font-semibold">Comp. Science</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-lg text-label-lg text-on-surface-variant">TYPE</span>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded text-label-md font-bold">HOSTELER</span>
+</div>
+</div>
+</div>
+<!-- Student Card 2 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-transparent hover:border-primary/20 hover:shadow-lg transition-all cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a female university student with a professional look. Minimalist background in soft neutral tones. The image is crisp, bright, and maintains the professional, trustworthy aesthetic of the TNPS administrative dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx-QJGNefofXhWcSax0JY9nBaJwtnCa7aNH7dYEijeAfIJkN0Iyb-LjzxGOj5Up_uln0wX0o1OID5bQE3q6zv8xyNbIiHuvdSvWQb9NwKU3POAPvllovrbcj_aZSKpXRoaVhqJxoiXjAS-H7OjqKikOVi8YxTWYLY568p23DbEQHv5rIU30zsyB-Md0X5RHl4pCVpXVXo3ZiACUOj1Kdy6PjyajiR4HDHit6XzcNL6yHdpflIg0jtm"/>
+</div>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-outline border-2 border-surface-container-lowest rounded-full" title="Out of Campus"></div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Priya Nair</h3>
+<p class="text-on-surface-variant font-label-md text-label-md tracking-wider">UID: 21BEE4502</p>
+</div>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<div class="mt-4 flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface-variant">DEPARTMENT</span>
+<span class="font-body-md text-body-md font-semibold">Electrical Eng.</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-lg text-label-lg text-on-surface-variant">TYPE</span>
+<span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded text-label-md font-bold">DAY SCHOLAR</span>
+</div>
+</div>
+</div>
+<!-- Student Card 3 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-transparent hover:border-primary/20 hover:shadow-lg transition-all cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Portrait of a diverse university student for an administrative database. Clean, corporate-modern lighting with a minimalist studio background. The style is focused on clarity and institutional reliability, using a palette of soft grays and white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQnL-jHE_7StlCPtS67cxminf38sXAe9lDZPgEKZSeQ5siGK3x5opqK0F6sDNmEnAyotqQnrzbxkVNrPQ4J4R0Tvl7Ukeupnz_bezd5xuavdyQt99dJ2bnvMyrQYag3NntLgsAQ7dvMwOhZb5Up6xQNhLY2m47fbLHG8zGOz3a4lKGMnl-yCOdHY9DWocDvUU_zmJzSx5DxSWl8Ch1OjA--lNM_3FDLtGwW7WP9SlDCrNtbcrP_F5w"/>
+</div>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary-container border-2 border-surface-container-lowest rounded-full" title="In Campus"></div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Rohan Mehta</h3>
+<p class="text-on-surface-variant font-label-md text-label-md tracking-wider">UID: 20BME3311</p>
+</div>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<div class="mt-4 flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface-variant">DEPARTMENT</span>
+<span class="font-body-md text-body-md font-semibold">Mechanical Eng.</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-lg text-label-lg text-on-surface-variant">TYPE</span>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded text-label-md font-bold">HOSTELER</span>
+</div>
+</div>
+</div>
+<!-- Student Card 4 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-transparent hover:border-primary/20 hover:shadow-lg transition-all cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Studio portrait of a student wearing glasses, looking towards the camera. The background is a clean, solid neutral color. Professional high-key lighting creates a bright and trustworthy mood, perfect for a secure campus management software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq0QP9toWLa4snJAApLBPRgZ--KgpmchmwlMojZ6eLW1IzOYHvzOGaAUEWjNJFKuhzB1wxntWQPnFNLn5OFWrljYL0zFM2Wzbe0rFPbRcuvH73DZ1-PIoYcWHUVispVXvwiXBBhBEvdk-0J-b1DCtQf_7l_GK5noZg6unkcusdFnqDTzGvNbJExRiIpJRVMdbyqXDdAVwLS4tLkX6o4-5afP0fKvQyVWBKqrC4eEeUrlVibOTM3sSc"/>
+</div>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary-container border-2 border-surface-container-lowest rounded-full" title="In Campus"></div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Sarah Williams</h3>
+<p class="text-on-surface-variant font-label-md text-label-md tracking-wider">UID: 22BBA0092</p>
+</div>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<div class="mt-4 flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface-variant">DEPARTMENT</span>
+<span class="font-body-md text-body-md font-semibold">Business Admin.</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-lg text-label-lg text-on-surface-variant">TYPE</span>
+<span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded text-label-md font-bold">DAY SCHOLAR</span>
+</div>
+</div>
+</div>
+<!-- Student Card 5 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-transparent hover:border-primary/20 hover:shadow-lg transition-all cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Identity-style portrait of a male student for a campus security system. Bright, even lighting and a minimalist background. The design is clean and focuses on facial recognition clarity, adhering to the professional Indigo and Purple brand theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkQGDQv4b_UUWhfdEjIwpqU-3Cl_9BBKmbe2vb4g4fSVTpEFmeppvLqj7xH_OdXINwl-Et-aVjRwMv_KA2mEvMULyxMFy0yKYm2U1OzNrln_upH3QAOGGe0PtJd_aJc73wVO6BUy3nf5OR0ilUYMHFWVFXioS3js-wrXoq0ngibU_cptaZg35juD75IzIzeRhap0HPZFrHM38waP-khEqYBAU7RE5GUwamQwIsiUcQaVm1IuA1kNL1"/>
+</div>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-outline border-2 border-surface-container-lowest rounded-full" title="Out of Campus"></div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Kevin Zhao</h3>
+<p class="text-on-surface-variant font-label-md text-label-md tracking-wider">UID: 20BCS2214</p>
+</div>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<div class="mt-4 flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface-variant">DEPARTMENT</span>
+<span class="font-body-md text-body-md font-semibold">Comp. Science</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-lg text-label-lg text-on-surface-variant">TYPE</span>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded text-label-md font-bold">HOSTELER</span>
+</div>
+</div>
+</div>
+<!-- Student Card 6 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-transparent hover:border-primary/20 hover:shadow-lg transition-all cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Clean professional headshot of a university student. Minimalist gray background, high-end photography with soft lighting. The image serves as a high-fidelity avatar in a security management application, maintaining brand consistency with professional indigo tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUX9A5BxjoZNMUFh-ZSmx3kZUKbL1o9A2jpc7V50U6dU2B-tQ2A_f-AjkXngYbkTsarOoCPOF8fe6TxxCufuODDf14Du9YRzyNsOxybbXEguhLLXn2EGsuO2aWcpr7aWNWTFf7sTLqI3Z3FWKtp9pjCaeHVQRbcTF97dAOa7mOcWm9hzNQ0MDmqkmjGvNLwZn0KZ7WgSRhYN7q3_zPPFjgnHVNS423jmKFLGBOzO6zq4pmwxvEad0P"/>
+</div>
+<div class="absolute bottom-0 right-0 w-4 h-4 bg-tertiary-container border-2 border-surface-container-lowest rounded-full" title="In Campus"></div>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Ishani Kapoor</h3>
+<p class="text-on-surface-variant font-label-md text-label-md tracking-wider">UID: 21BDS0055</p>
+</div>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<div class="mt-4 flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface-variant">DEPARTMENT</span>
+<span class="font-body-md text-body-md font-semibold">Data Science</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-lg text-label-lg text-on-surface-variant">TYPE</span>
+<span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded text-label-md font-bold">DAY SCHOLAR</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination/Load More (Subtle) -->
+<div class="flex justify-center py-8">
+<button class="flex items-center gap-2 px-8 py-3 bg-surface-container text-primary font-label-lg text-label-lg rounded-xl hover:bg-primary/10 transition-all border border-primary/20 active:scale-95">
+<span class="material-symbols-outlined">expand_more</span>
+                LOAD MORE STUDENTS
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+
+<!-- Floating Action Button - Contextual to List Management -->
+<button class="fixed right-6 bottom-20 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:shadow-xl hover:scale-105 active:scale-95 transition-all z-40 group">
+<span class="material-symbols-outlined text-[28px]">person_add</span>
+<span class="absolute right-full mr-3 bg-inverse-surface text-inverse-on-surface px-3 py-1 rounded-lg text-label-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Add Student</span>
+</button>
+<script>
+        // Micro-interaction for filter chips
+        const chips = document.querySelectorAll('button.px-5');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.classList.remove('bg-primary', 'text-on-primary');
+                    c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                chip.classList.add('bg-primary', 'text-on-primary');
+                chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+            });
+        });
+
+        // Basic search mock filtering animation
+        const searchInput = document.querySelector('input[type="text"]');
+        const cards = document.querySelectorAll('.grid > div');
+        
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const name = card.querySelector('h3').textContent.toLowerCase();
+                const uid = card.querySelector('p').textContent.toLowerCase();
+                const visible = name.includes(query) || uid.includes(query);
+                
+                if (visible) {
+                    card.style.display = 'block';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(10px)';
+                    setTimeout(() => { if (!visible) card.style.display = 'none'; }, 200);
+                }
+            });
+        });
+    </script>
+</body></html>

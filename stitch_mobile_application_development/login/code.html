@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TNPS - Campus Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#e1e0ff",
+                    "primary": "#4648d4",
+                    "outline-variant": "#c7c4d7",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#2f2ebe",
+                    "background": "#f7f9fb",
+                    "surface": "#f7f9fb",
+                    "secondary": "#5b598c",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#000703",
+                    "primary-container": "#6063ee",
+                    "tertiary": "#006c49",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-surface-variant": "#464554",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#191c1e",
+                    "secondary-fixed": "#e3dfff",
+                    "surface-dim": "#d8dadc",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "surface-container": "#eceef0",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f7f9fb",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#444173",
+                    "tertiary-container": "#00885d",
+                    "on-primary-fixed": "#07006c",
+                    "outline": "#767586",
+                    "on-tertiary-fixed": "#002113",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#fffbff",
+                    "inverse-surface": "#2d3133",
+                    "secondary-container": "#c7c3fe",
+                    "on-secondary-container": "#514f81",
+                    "secondary-fixed-dim": "#c4c1fb",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "inverse-primary": "#c0c1ff",
+                    "on-error-container": "#93000a",
+                    "on-background": "#191c1e",
+                    "surface-variant": "#e0e3e5",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-secondary-fixed": "#181445",
+                    "surface-tint": "#494bd6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "label-lg": ["Inter"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f7f9fb;
+        }
+        .form-container {
+            max-width: 420px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen text-on-surface">
+<!-- Header Section (Shared TopAppBar Logic) -->
+<header class="bg-surface flex items-center p-4 border-b border-outline-variant/30 justify-between">
+<div class="text-primary flex size-10 shrink-0 items-center justify-center" data-icon="ShieldCheck">
+<svg fill="currentColor" height="28px" viewbox="0 0 256 256" width="28px" xmlns="http://www.w3.org/2000/svg">
+<path d="M208,40H48A16,16,0,0,0,32,56v58.78c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40Zm0,74.79c0,78.42-66.35,104.62-80,109.18-13.53-4.51-80-30.69-80-109.18V56H208ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.68l50.34-50.34a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"></path>
+</svg>
+</div>
+<h2 class="text-on-background text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center mr-10">TNPS</h2>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-4 py-8 relative overflow-hidden">
+<!-- Atmospheric Background Element -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-20">
+<webgl-shader class="w-full h-full" src="{{DATA:ANIMATION:ANIMATION_1}}"></webgl-shader>
+</div>
+<div class="form-container w-full bg-surface-container-lowest shadow-xl rounded-xl p-8 z-10 border border-outline-variant/20">
+<!-- Brand Hero -->
+<div class="flex flex-col items-center mb-8">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary text-4xl">fingerprint</span>
+</div>
+<h1 class="text-display-lg text-on-surface text-center mb-2">Welcome to TNPS</h1>
+<p class="text-body-md text-on-surface-variant text-center">Sign in to manage your campus access and digital IDs.</p>
+</div>
+<!-- Login Switcher -->
+<div class="flex bg-surface-container rounded-lg p-1 mb-8" id="role-switcher">
+<button class="flex-1 py-2 text-sm font-semibold rounded-md transition-all duration-200 bg-surface-container-lowest text-on-surface shadow-sm" id="btn-student" onclick="switchRole('student')">
+                    Student
+                </button>
+<button class="flex-1 py-2 text-sm font-semibold rounded-md transition-all duration-200 text-on-surface-variant hover:bg-surface-container-high" id="btn-admin" onclick="switchRole('admin')">
+                    Admin
+                </button>
+</div>
+<!-- Login Form -->
+<form class="space-y-6" id="login-form">
+<div id="field-user">
+<label class="block text-sm font-semibold text-on-surface mb-2" for="username" id="label-user">University ID (UID) or Email</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">person</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body-md" id="username" placeholder="Enter your UID" required="" type="text"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-semibold text-on-surface mb-2" for="password">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">lock</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body-md" id="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<label class="flex items-center cursor-pointer">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+<span class="ml-2 text-sm text-on-surface-variant">Remember Me</span>
+</label>
+<a class="text-sm font-semibold text-primary hover:underline" href="#">Forgot Password?</a>
+</div>
+<button class="w-full py-3 px-4 bg-primary text-on-primary font-bold rounded-lg hover:bg-primary-container transition-colors shadow-md active:scale-[0.98]" type="submit">
+                    Sign In
+                </button>
+</form>
+<!-- Security Note -->
+<div class="mt-8 flex items-center justify-center gap-2 text-on-surface-variant/70">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<p class="text-xs font-medium">Protected by institutional multi-factor authentication.</p>
+</div>
+</div>
+<!-- Decorative Illustration -->
+<div class="mt-12 w-full max-w-md hidden md:block">
+<div class="w-full aspect-[16/6] rounded-xl overflow-hidden shadow-sm border border-outline-variant/30" data-alt="A futuristic, high-tech campus environment in a bright daylight setting with clean architectural lines and digital security overlays. The scene is rendered in a professional, light-mode aesthetic with soft blue and deep indigo highlights. Floating translucent digital ID cards and hexagonal patterns create a sense of advanced security and modern technology integration." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDThL1nEYEOtSi31qonL-fHYLM8CCiAfIDxtK8yjUaRPcNxi7ZP8TCbTUEUTIkshTyHQmVM8N_pcjYIsJ2wcPbwtSpMYeOxw5LB7Q8C_2crsOW3veJGz1hnNG9_6WlujSk4-xqxgR_23-rTu15cZWtXcEzyG-n2wyConrjHYdIOkmi0v3HtduuRL16s-marcLbRE--9QkF0En2c2EBxfLw_XN0ImX5RX7TViYFtYdnhYPD2aU9lsVsS')"></div>
+</div>
+</main>
+<!-- Footer Section (Shared Footer Style) -->
+<footer class="bg-surface border-t border-outline-variant/30 px-6 py-8">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">security</span>
+<span class="text-sm text-on-surface-variant font-medium">© 2024 TNPS Inc. All rights reserved.</span>
+</div>
+<div class="flex gap-6">
+<a class="text-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+    <script>
+        let currentRole = 'student';
+
+        function switchRole(role) {
+            currentRole = role;
+            const btnStudent = document.getElementById('btn-student');
+            const btnAdmin = document.getElementById('btn-admin');
+            const labelUser = document.getElementById('label-user');
+            const inputUser = document.getElementById('username');
+
+            if (role === 'student') {
+                // UI Switch
+                btnStudent.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+                btnStudent.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high');
+                
+                btnAdmin.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+                btnAdmin.classList.add('text-on-surface-variant', 'hover:bg-surface-container-high');
+                
+                // Field Update
+                labelUser.textContent = 'University ID (UID) or Email';
+                inputUser.placeholder = 'Enter your UID';
+            } else {
+                // UI Switch
+                btnAdmin.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+                btnAdmin.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high');
+                
+                btnStudent.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+                btnStudent.classList.add('text-on-surface-variant', 'hover:bg-surface-container-high');
+                
+                // Field Update
+                labelUser.textContent = 'Admin Email';
+                inputUser.placeholder = 'admin@institution.edu';
+            }
+        }
+
+        // Form Interactivity
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const emailInput = document.getElementById('username').value.trim();
+            const passwordInput = document.getElementById('password').value;
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span>';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                if (currentRole === 'student') {
+                    if (emailInput === 'student@gmail.com' && passwordInput === 'student') {
+                        window.location.href = '../dashboard/code.html';
+                    } else {
+                        alert('Invalid student credentials. Please use student@gmail.com / student');
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                    }
+                } else if (currentRole === 'admin') {
+                    if (emailInput === 'admin@gmail.com' && passwordInput === 'admin') {
+                        window.location.href = '../admindashboard/code.html';
+                    } else {
+                        alert('Invalid admin credentials. Please use admin@gmail.com / admin');
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                    }
+                }
+            }, 1000);
+        });
+    </script>
+</body></html>

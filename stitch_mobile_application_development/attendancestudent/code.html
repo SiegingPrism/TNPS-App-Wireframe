@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attendance Records - CampusPass</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#4edea3",
+                        "outline": "#767586",
+                        "on-tertiary-container": "#000703",
+                        "on-tertiary-fixed": "#002113",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-container": "#514f81",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f7f9fb",
+                        "on-secondary-fixed-variant": "#444173",
+                        "background": "#f7f9fb",
+                        "secondary-container": "#c7c3fe",
+                        "surface-container": "#eceef0",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#07006c",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#4648d4",
+                        "on-surface-variant": "#464554",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#c0c1ff",
+                        "secondary-fixed": "#e3dfff",
+                        "secondary": "#5b598c",
+                        "primary-fixed": "#e1e0ff",
+                        "surface-dim": "#d8dadc",
+                        "outline-variant": "#c7c4d7",
+                        "tertiary": "#006c49",
+                        "on-primary-container": "#fffbff",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "surface-variant": "#e0e3e5",
+                        "on-surface": "#191c1e",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed-dim": "#c4c1fb",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#181445",
+                        "on-background": "#191c1e",
+                        "surface-tint": "#494bd6",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-low": "#f2f4f6",
+                        "surface": "#f7f9fb",
+                        "tertiary-container": "#00885d",
+                        "primary-container": "#6063ee",
+                        "on-tertiary-fixed-variant": "#005236"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "1rem",
+                        "stack-gap": "1rem",
+                        "section-gap": "1.5rem",
+                        "card-padding": "1.25rem",
+                        "touch-target": "2.75rem"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-lg": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "display-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-lg": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased pb-24 md:pb-0 md:flex">
+<!-- Desktop Sidebar (Hidden on mobile) -->
+<aside class="hidden md:flex flex-col w-[280px] bg-surface-container-lowest h-screen fixed left-0 top-0 border-r border-surface-variant z-40">
+<div class="p-6">
+<h1 class="font-headline-md text-headline-md text-primary font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">security</span>
+                CampusPass
+            </h1>
+</div>
+<nav class="flex-1 px-4 flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+                Passes
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">history</span>
+                History
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-secondary-container text-on-secondary-container font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event_available</span>
+                Attendance
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined">meeting_room</span>
+                Rooms
+            </a>
+</nav>
+<div class="p-4 mt-auto">
+<div class="flex items-center gap-3 bg-surface-container-low p-3 rounded-xl border border-surface-variant">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Professional headshot of a young student in a modern corporate setting, clean lighting, indigo background, sharp focus, confident expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF0hpYeIWQGhgDkK1Lmx0NRHBv3Sz-6-iCNfi1lneO7ChIiX910Sts3eazYj49rWfKaf-y8b-Z0l-15MeA0kvRB7ThDS1ztvFvtZzLnWjGD7i--gHKP_A78M_RzHPPZLR-J5Yh-6SrUQTSP9nDFN024AhFoayXgyhuXkFyndEpkjvdmf-SjRO98nGjVfgYenx_LG50qVPoXX7C3SsiSOKEl1cRvfHqDnwRgNp0VAPXKHIHMuE06sGitj-mTWJI8IVxadsXgx3m92o"/>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Alex Johnson</p>
+<p class="font-label-md text-label-md text-on-surface-variant">ID: 24003128</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="w-full md:ml-[280px] min-h-screen">
+<!-- TopAppBar (Mobile) -->
+<header class="md:hidden bg-background text-primary fixed top-0 w-full z-50 flex justify-between items-center px-container-margin h-touch-target">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="Small circular profile picture of a student smiling, bright lighting, soft background, modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnlZRbH1S2nzz1iIZXpkkm8d8eS3nxOxaKbWz8AkOwOOg5JNodeWx6dPRi440ptqun9RZ1oVzlOYiNDhjuNih4QNYPziVdd-oQf7HgMq7X1nYeaDdHezXreraPieVcwsrpbsYqAjyT3nKCtcClHiVTMUgb2ISLSP5R3tc23QBo10ANavwsjuOY6nXjfYLlo51HgwDcxhyRgSm77Jx1bO6NPW4lcr87Xg1hoM9Fli8pM-D7lboJQz-huS0V0UYOQgY8Tzfw1i3bi7A"/>
+</div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">CampusPass</h1>
+<button class="text-primary hover:bg-surface-container-high active:scale-95 transition-all p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<div class="pt-20 md:pt-8 px-container-margin md:px-8 max-w-[1200px] mx-auto pb-8">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-section-gap gap-4">
+<div>
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">Attendance Records</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">View your in/out history</p>
+</div>
+<div class="hidden md:flex items-center gap-3">
+<button class="p-2 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg hover:bg-primary-container transition-colors shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-sm">logout</span>
+                        Logout
+                    </button>
+</div>
+</div>
+<!-- Summary Cards (Bento Grid Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-section-gap">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-card-padding shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-variant/50 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-tertiary">login</span>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<p class="font-label-lg text-label-lg text-on-surface-variant">Total Entries</p>
+<div class="w-8 h-8 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-sm">login</span>
+</div>
+</div>
+<div class="relative z-10">
+<p class="font-headline-md text-headline-md text-on-surface">0</p>
+<p class="font-label-md text-label-md text-outline mt-1">All time gate entries</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-card-padding shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-variant/50 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-error">logout</span>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<p class="font-label-lg text-label-lg text-on-surface-variant">Total Exits</p>
+<div class="w-8 h-8 rounded-lg bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-sm">logout</span>
+</div>
+</div>
+<div class="relative z-10">
+<p class="font-headline-md text-headline-md text-on-surface">0</p>
+<p class="font-label-md text-label-md text-outline mt-1">All time gate exits</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-card-padding shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-variant/50 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">calendar_month</span>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<p class="font-label-lg text-label-lg text-on-surface-variant">This Month</p>
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+</div>
+</div>
+<div class="relative z-10">
+<p class="font-headline-md text-headline-md text-on-surface">0</p>
+<p class="font-label-md text-label-md text-outline mt-1">Movements this month</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-card-padding shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-variant/50 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-tertiary">location_on</span>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<p class="font-label-lg text-label-lg text-on-surface-variant">Current Status</p>
+<div class="w-8 h-8 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-sm">location_on</span>
+</div>
+</div>
+<div class="relative z-10 flex items-end justify-between">
+<div>
+<span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-tertiary/10 text-tertiary font-label-lg text-label-lg mt-1 mb-1">IN</span>
+<p class="font-label-md text-label-md text-outline">Inside Campus</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Filter Section -->
+<div class="bg-surface-container-lowest rounded-xl p-card-padding shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-variant/50 mb-section-gap">
+<div class="flex items-center gap-2 mb-4 text-on-surface font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined">filter_list</span>
+<h3>Filter by Date</h3>
+</div>
+<div class="flex flex-col md:flex-row gap-4 items-end">
+<div class="w-full md:w-auto">
+<label class="block font-label-lg text-label-lg text-on-surface-variant mb-1">From Date</label>
+<div class="relative">
+<input class="w-full md:w-48 bg-surface-bright border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" placeholder="dd/mm/yyyy" type="date"/>
+</div>
+</div>
+<div class="w-full md:w-auto">
+<label class="block font-label-lg text-label-lg text-on-surface-variant mb-1">To Date</label>
+<div class="relative">
+<input class="w-full md:w-48 bg-surface-bright border border-outline-variant rounded-lg px-3 py-2 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" placeholder="dd/mm/yyyy" type="date"/>
+</div>
+</div>
+<div class="flex gap-2 w-full md:w-auto mt-4 md:mt-0">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-2 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg hover:bg-primary-container transition-colors shadow-sm h-[42px]">
+<span class="material-symbols-outlined text-sm">search</span>
+                            Filter
+                        </button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-2 bg-surface-container-high text-on-surface-variant rounded-lg font-label-lg text-label-lg hover:bg-surface-variant transition-colors border border-outline-variant h-[42px]">
+<span class="material-symbols-outlined text-sm">close</span>
+                            Clear
+                        </button>
+</div>
+</div>
+</div>
+<!-- Attendance Log -->
+<div class="bg-surface-container-lowest rounded-xl p-card-padding shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-variant/50 min-h-[300px] flex flex-col">
+<div class="flex items-center gap-2 mb-6 text-on-surface font-headline-sm text-headline-sm">
+<span class="material-symbols-outlined">list_alt</span>
+<h3>Attendance Log</h3>
+</div>
+<!-- Empty State -->
+<div class="flex-1 flex flex-col items-center justify-center text-center p-8 opacity-70">
+<div class="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant">event_busy</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-on-surface mb-2">No Records Found</p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">No attendance records for the selected period</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+
+</body></html>

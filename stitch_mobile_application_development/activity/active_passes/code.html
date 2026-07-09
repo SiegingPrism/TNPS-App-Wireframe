@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Active Pass Monitoring - Campus Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#464554",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "primary": "#4648d4",
+                    "surface-tint": "#494bd6",
+                    "outline": "#767586",
+                    "on-primary-container": "#fffbff",
+                    "surface-dim": "#d8dadc",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#e3dfff",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f7f9fb",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-container": "#c7c3fe",
+                    "on-background": "#191c1e",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "outline-variant": "#c7c4d7",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "primary-container": "#6063ee",
+                    "background": "#f7f9fb",
+                    "surface-variant": "#e0e3e5",
+                    "tertiary-fixed": "#6ffbbe",
+                    "surface-bright": "#f7f9fb",
+                    "inverse-surface": "#2d3133",
+                    "secondary-fixed-dim": "#c4c1fb",
+                    "on-surface": "#191c1e",
+                    "surface-container": "#eceef0",
+                    "on-tertiary-fixed": "#002113",
+                    "on-primary-fixed": "#07006c",
+                    "on-secondary-fixed": "#181445",
+                    "inverse-primary": "#c0c1ff",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-tertiary-container": "#000703",
+                    "surface-container-low": "#f2f4f6",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#006c49",
+                    "surface-container-low": "#f2f4f6",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#006c49",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#5b598c",
+                    "tertiary-container": "#00885d",
+                    "on-primary-fixed-variant": "#2f2ebe",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#514f81",
+                    "primary-fixed": "#e1e0ff",
+                    "on-secondary-fixed-variant": "#444173",
+                    "surface-container-highest": "#e0e3e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-margin": "1rem",
+                    "stack-gap": "1rem",
+                    "section-gap": "1.5rem",
+                    "card-padding": "1.25rem",
+                    "touch-target": "2.75rem"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "label-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-glow {
+            box-shadow: 0 0 15px rgba(70, 72, 212, 0.15);
+        }
+        .bento-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface shadow-sm flex justify-between items-center px-container-margin py-3">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-150">menu</button>
+<h1 class="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-primary">Campus Admin</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="hidden md:flex flex-col text-right">
+<span class="font-label-lg text-label-lg text-on-surface">Admin User</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider">Global Security</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold shadow-sm">
+                AD
+            </div>
+</div>
+</header>
+<div class="flex">
+<!-- NavigationDrawer (Desktop Only) -->
+<aside class="hidden md:flex flex-col gap-2 p-4 h-[calc(100vh-64px)] w-[280px] sticky top-16 bg-surface-container-low">
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">approval</span>
+<span class="font-label-lg text-label-lg">Pass Requests</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">door_front</span>
+<span class="font-label-lg text-label-lg">Gate Tracking</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container font-bold rounded-full transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-lg text-label-lg">Active Passes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">apartment</span>
+<span class="font-label-lg text-label-lg">Hostel Monitoring</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-lg text-label-lg">Analytics</span>
+</a>
+<div class="my-2 border-t border-outline-variant"></div>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">rule</span>
+<span class="font-label-lg text-label-lg">Complaints</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all duration-200 ease-in-out rounded-lg" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span class="font-label-lg text-label-lg">Announcements</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-primary-fixed rounded-2xl">
+<p class="font-label-lg text-on-primary-fixed mb-1">System Health</p>
+<div class="w-full bg-on-primary-fixed-variant/20 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary w-4/5 h-full"></div>
+</div>
+<p class="text-[10px] text-on-primary-fixed-variant mt-2">Gate Nodes: 12/12 Online</p>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 p-4 md:p-8 pb-24 md:pb-8 max-w-[1200px] mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">Active Pass Monitoring</h2>
+<p class="text-body-md text-on-surface-variant mt-1">Real-time oversight of all sanctioned off-campus movements.</p>
+</div>
+<div class="relative w-full md:w-96 group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm text-body-md" placeholder="Search by name, ID or destination..." type="text"/>
+</div>
+</div>
+<!-- Bento Stats Grid -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-outline-variant/30 bento-card">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-primary bg-primary-container/20 p-2 rounded-lg">group</span>
+<span class="text-tertiary font-label-md text-label-md flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 12%</span>
+</div>
+<p class="text-on-surface-variant font-label-lg text-label-lg uppercase">Total Active</p>
+<p class="text-on-surface font-headline-md text-headline-md">1,248</p>
+</div>
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-outline-variant/30 bento-card">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-secondary bg-secondary-container/20 p-2 rounded-lg">timer</span>
+</div>
+<p class="text-on-surface-variant font-label-lg text-label-lg uppercase">Expiring Soon</p>
+<p class="text-on-surface font-headline-md text-headline-md">84</p>
+</div>
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-outline-variant/30 bento-card">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-tertiary bg-tertiary-fixed/20 p-2 rounded-lg">home_work</span>
+</div>
+<p class="text-on-surface-variant font-label-lg text-label-lg uppercase">Local Visits</p>
+<p class="text-on-surface font-headline-md text-headline-md">912</p>
+</div>
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-outline-variant/30 bento-card">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-error bg-error-container/20 p-2 rounded-lg">warning</span>
+</div>
+<p class="text-on-surface-variant font-label-lg text-label-lg uppercase">Overdue</p>
+<p class="text-on-surface font-headline-md text-headline-md">7</p>
+</div>
+</div>
+<!-- List Header -->
+<div class="flex items-center justify-between mb-4 px-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Currently Out-Station</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant text-label-lg font-label-lg hover:bg-surface-container-high transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+                    </button>
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant text-label-lg font-label-lg hover:bg-surface-container-high transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">download</span> Export
+                    </button>
+</div>
+</div>
+<!-- Monitoring Cards Stack -->
+<div class="flex flex-col gap-3">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/50 p-4 hover:border-primary/30 transition-all active-glow group">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a college student, looking confident and smiling slightly, set against a neutral, high-key studio background with soft institutional lighting. The image captures clear facial features for security identification purposes, maintaining a modern and clean aesthetic consistent with a premium campus management portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2kKcX5KBRdgBLj1f3AiyDIVVnOuUfHpQqXfyIev9rvs8LN5WtIQkENnsS-tM_zK6sgwIgrZkr2CP4_W5DhbUO8VFVuqddl8BJMTKWeD33y8yrl6F3cuMCniuRFBUdvs5vDrF8MuvKqST3-_uDshMi43dzXFJWeqrLo6OfYUe4ULYxWQuwSeVeVcYwWgP8yBHWKXCtYxijb4jzimHYQm_ppaDPfHmLFwiGpdUjR0Chduq8SsInEjGg"/>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-semibold">Arjun Malhotra</h4>
+<p class="text-label-lg text-on-surface-variant">ID: 2024CS1092 • Block B-402</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-4 md:gap-8 items-center">
+<div class="min-w-[120px]">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold mb-1">Destination</p>
+<div class="flex items-center gap-1.5 text-on-surface font-medium">
+<span class="material-symbols-outlined text-primary text-[18px]">location_on</span>
+<span class="text-body-md">Phoenix Mall</span>
+</div>
+</div>
+<div class="min-w-[120px]">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold mb-1">Time Remaining</p>
+<div class="flex items-center gap-1.5 text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="text-body-md">02:45:12</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="px-3 py-1 bg-tertiary-fixed-dim/20 text-tertiary font-label-lg text-label-lg rounded-full">Approved</div>
+<button class="h-10 px-6 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg hover:bg-primary-container transition-all active:scale-95 flex items-center justify-center">
+                                    Verify
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 (Warning State) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-error/20 p-4 hover:border-error/40 transition-all group relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young female university student wearing casual modern attire. The setting is a brightly lit, minimalist campus environment. The photograph is sharp and clean, with a neutral color palette emphasizing professional institutional quality and clear visibility for identification, matching a modern security UI theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1IMIDPHWVQGJptFsFIkeOKqGqoprl_APrdkZPHQ7-kb2sV4NkH-SEHO9hLUXsde8EacVTeGkRfEHJSCryThnU9JeXX4aQvD3jZz74HZ4WJWDrREx5J3W6PRUxx0iGOEkkxMVGLOqz4H-jWnE7eNon42I8KTV1n7dku0gKdey2T_u84_g7sNcE3DfFRloJjMEQCp8SPr198kZzylTm8qpssy0E9433qpZR43aBC9BP3YHxMBM2T5YX"/>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-semibold">Sarah Jenkins</h4>
+<p class="text-label-lg text-on-surface-variant">ID: 2023BT0451 • Block A-101</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-4 md:gap-8 items-center">
+<div class="min-w-[120px]">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold mb-1">Destination</p>
+<div class="flex items-center gap-1.5 text-on-surface font-medium">
+<span class="material-symbols-outlined text-primary text-[18px]">home</span>
+<span class="text-body-md">Home Visit</span>
+</div>
+</div>
+<div class="min-w-[120px]">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold mb-1">Time Remaining</p>
+<div class="flex items-center gap-1.5 text-error font-bold">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span class="text-body-md">Overdue (15m)</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="px-3 py-1 bg-error-container text-on-error-container font-label-lg text-label-lg rounded-full">Emergency Contacted</div>
+<button class="h-10 px-6 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg hover:bg-primary-container transition-all active:scale-95 flex items-center justify-center">
+                                    Verify
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/50 p-4 hover:border-primary/30 transition-all group">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A portrait of a male student with short dark hair, wearing a navy blue hoodie. The background is a blurred modern architectural space with high ceilings and glass walls, signifying a campus atmosphere. The lighting is balanced and crisp, maintaining a professional and secure aesthetic suitable for administrative identification software." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAotuL_H7g61N5MjZzPCeSXPJichHem_kEH-Yw2fJNe8-f-0CgU6eXqXjtR2J85l2bbKzsleL0oxz1iRYs9T9nIkwZ9I8Vxud2Fp6PkFfDtrpN6SEuRu-Ezxzr1fi3ZyAZa810E8uRZhCRrQf-BPck7gbYNAt9K3A8cSxAKpFZgTI7xLOuv1xxrXWsqd3DFA5pbHx65VfLYzq6NoNMIpu6pund44-n6Zgvekalv5Lv31SsD0DWCM-9O"/>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-semibold">David Chen</h4>
+<p class="text-label-lg text-on-surface-variant">ID: 2024EE2283 • Block C-205</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-4 md:gap-8 items-center">
+<div class="min-w-[120px]">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold mb-1">Destination</p>
+<div class="flex items-center gap-1.5 text-on-surface font-medium">
+<span class="material-symbols-outlined text-primary text-[18px]">restaurant</span>
+<span class="text-body-md">City Market</span>
+</div>
+</div>
+<div class="min-w-[120px]">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold mb-1">Time Remaining</p>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="text-body-md">05:12:33</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="px-3 py-1 bg-surface-variant text-on-surface-variant font-label-lg text-label-lg rounded-full">On Leave</div>
+<button class="h-10 px-6 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg hover:bg-primary-container transition-all active:scale-95 flex items-center justify-center">
+                                    Verify
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/50 p-4 hover:border-primary/30 transition-all group">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young woman with glasses and a friendly expression. She is in a bright indoor setting that resembles a modern academic library or student hub. The image quality is high-resolution with a focus on clear identity recognition, utilizing soft, natural lighting and a clean, minimalist professional backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFbYF9FgXx9NoNW-neJDk683308zkVsUkt4I5WGt37NwEF1F4xW6u6PV3PS0zG9kiy-hPgky8LLlGxiA2W87D97J07nySCcIeQMGklr_7sF3FyPbfWXV4_OqznJHXbkxamiGWq8aqReer-fbO9u2yX0wVQyr8RX4AMssyRrRSqPBD7XNYJkPfb9qz9FwBB_bFT6PyPkmk_WfCqFRZNgwv7HIGPSEDdoUsEpar0Lsp1YVLiikb0QRHg"/>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg text-on-surface font-semibold">Priya Sharma</h4>
+<p class="text-label-lg text-on-surface-variant">ID: 2022AR0122 • Block B-112</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-4 md:gap-8 items-center">
+<div class="min-w-[120px]">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold mb-1">Destination</p>
+<div class="flex items-center gap-1.5 text-on-surface font-medium">
+<span class="material-symbols-outlined text-primary text-[18px]">local_hospital</span>
+<span class="text-body-md">St. Mary's Clinic</span>
+</div>
+</div>
+<div class="min-w-[120px]">
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold mb-1">Time Remaining</p>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="text-body-md">01:05:44</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container font-label-lg text-label-lg rounded-full">Medical Pass</div>
+<button class="h-10 px-6 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg hover:bg-primary-container transition-all active:scale-95 flex items-center justify-center">
+                                    Verify
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-8 flex items-center justify-center gap-2">
+<button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-on-primary font-label-lg text-label-lg">1</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant hover:bg-surface-container-high transition-colors font-label-lg text-label-lg">2</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant hover:bg-surface-container-high transition-colors font-label-lg text-label-lg">3</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+
+<!-- FAB (Mobile Only Contextual Action) -->
+<button class="md:hidden fixed bottom-20 right-6 w-14 h-14 bg-primary text-on-primary rounded-2xl shadow-xl flex items-center justify-center active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+</button>
+<script>
+        // Micro-interaction for row hovering / button clicking
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        const searchContainer = searchInput?.parentElement;
+        if (searchInput && searchContainer) {
+            searchInput.addEventListener('focus', () => {
+                searchContainer.classList.add('ring-2', 'ring-primary/20');
+            });
+            searchInput.addEventListener('blur', () => {
+                searchContainer.classList.remove('ring-2', 'ring-primary/20');
+            });
+        }
+    </script>
+</body></html>

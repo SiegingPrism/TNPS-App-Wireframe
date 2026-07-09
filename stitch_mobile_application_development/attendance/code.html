@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Attendance Management - TNPS</title>
+<!-- Tailwind CSS v3 CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: '#6366f1',
+            surface: {
+              DEFAULT: '#f7f9fb',
+              dim: '#d8dadc',
+              bright: '#f7f9fb',
+              lowest: '#ffffff',
+              low: '#f2f4f6',
+            },
+            status: {
+              present: '#dcfce7',
+              absent: '#fee2e2',
+              home: '#dbeafe',
+              gate: '#e0e7ff',
+              sick: '#fef3c7',
+              new: '#1e1b4b',
+            }
+          },
+          borderRadius: {
+            'custom': '8px',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-layout">
+    body {
+      background-color: #f7f9fb;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .status-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="font-sans text-slate-900 pb-20">
+<!-- BEGIN: MainHeader -->
+<header class="bg-brand text-white px-4 py-3 sticky top-0 z-50 flex justify-between items-center shadow-md">
+<div class="flex items-center gap-2">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<h1 class="font-bold text-lg">Attendance Management</h1>
+</div>
+<div class="flex gap-3">
+<button class="text-sm font-medium">Home</button>
+<button class="text-sm font-medium">Logout</button>
+</div>
+</header>
+<!-- END: MainHeader -->
+<main class="p-4 space-y-6"><section class="bg-white rounded-custom shadow-sm border border-slate-100 overflow-hidden" data-purpose="history-table"><div class="p-4 border-b border-slate-100"><h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider">Daily Attendance Summary</h2></div><div class="overflow-x-auto"><table class="w-full text-left text-xs"><thead class="bg-slate-50 border-b border-slate-100 text-slate-600"><tr><th class="px-3 py-2 font-bold">Date</th><th class="px-2 py-2 font-bold text-center">T</th><th class="px-2 py-2 font-bold text-center text-emerald-600">P</th><th class="px-2 py-2 font-bold text-center text-rose-600">A</th></tr></thead><tbody class="divide-y divide-slate-50"><tr><td class="px-3 py-3 text-slate-500">Sun Jul 05 2026</td><td class="px-2 py-3 text-center font-semibold">266</td><td class="px-2 py-3 text-center font-bold text-emerald-600 bg-emerald-50/30">229</td><td class="px-2 py-3 text-center font-bold text-rose-600 bg-rose-50/30">18</td></tr><tr><td class="px-3 py-3 text-slate-500">Sat Jul 04 2026</td><td class="px-2 py-3 text-center font-semibold">259</td><td class="px-2 py-3 text-center font-bold text-emerald-600">194</td><td class="px-2 py-3 text-center font-bold text-rose-600">28</td></tr><tr><td class="px-3 py-3 text-slate-500">Fri Jul 03 2026</td><td class="px-2 py-3 text-center font-semibold">247</td><td class="px-2 py-3 text-center font-bold text-emerald-600">43</td><td class="px-2 py-3 text-center font-bold text-rose-600">53</td></tr></tbody></table></div><div class="p-2 bg-slate-50 border-t border-slate-100"><p class="text-[9px] text-slate-400 italic px-2">P=Present, A=Absent, H=Home, S=Sick, Pen=Pending</p></div></section>
+<!-- BEGIN: DashboardSummary -->
+<section class="grid grid-cols-1 gap-4" data-purpose="summary-cards">
+<!-- Today's Summary Card -->
+<div class="bg-white rounded-custom p-4 shadow-sm border border-slate-100">
+<h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Today's Summary</h2>
+<div class="flex justify-between items-end mb-4">
+<div>
+<p class="text-xs text-slate-400">Total Allocated</p>
+<p class="text-3xl font-bold text-slate-800">266</p>
+</div>
+<div class="text-right space-y-1">
+<div class="flex justify-between gap-8">
+<span class="text-sm text-slate-600">Present:</span>
+<span class="text-sm font-bold text-emerald-600">229</span>
+</div>
+<div class="flex justify-between gap-8">
+<span class="text-sm text-slate-600">Absent:</span>
+<span class="text-sm font-bold text-rose-600">18</span>
+</div>
+<div class="flex justify-between gap-8">
+<span class="text-sm text-slate-600">On Pass:</span>
+<span class="text-sm font-bold text-blue-600">0</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Legend -->
+<div class="bg-white rounded-custom p-4 shadow-sm border border-slate-100">
+<h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Status Legend</h2>
+<div class="grid grid-cols-2 gap-2">
+<div class="bg-status-present text-[10px] py-1 px-2 text-center rounded-sm font-bold text-emerald-800">Present</div>
+<div class="bg-status-absent text-[10px] py-1 px-2 text-center rounded-sm font-bold text-rose-800">Absent</div>
+<div class="bg-status-home text-[10px] py-1 px-2 text-center rounded-sm font-bold text-blue-800">Home Pass</div>
+<div class="bg-status-gate text-[10px] py-1 px-2 text-center rounded-sm font-bold text-indigo-800">Gate Pass</div>
+<div class="bg-status-sick text-[10px] py-1 px-2 text-center rounded-sm font-bold text-amber-800">Sick Leave</div>
+<div class="bg-status-new text-[10px] py-1 px-2 text-center rounded-sm font-bold text-white">New Admission</div>
+</div>
+</div>
+</section>
+<!-- END: DashboardSummary -->
+<!-- BEGIN: Filters -->
+<section class="space-y-4" data-purpose="view-controls">
+<div class="flex gap-2">
+<button class="bg-brand text-white px-6 py-2 rounded-custom font-semibold text-sm flex-1">Block A</button>
+<button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-custom font-semibold text-sm flex-1">Block B</button>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="bg-blue-600 text-white whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold">Ground Floor</button>
+<button class="bg-white border border-slate-200 text-slate-600 whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold">First Floor</button>
+<button class="bg-white border border-slate-200 text-slate-600 whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold">Second Floor</button>
+</div>
+</section>
+<!-- END: Filters -->
+<!-- BEGIN: RoomGrid -->
+<section data-purpose="room-management">
+<h3 class="text-lg font-bold text-slate-800 mb-4">Rooms: A - Ground Floor</h3>
+<div class="grid grid-cols-1 gap-4">
+<!-- Room Card: AG-01 -->
+<div class="bg-white rounded-custom border border-slate-200 overflow-hidden shadow-sm">
+<div class="bg-slate-50 px-3 py-2 border-b border-slate-100 flex justify-between items-center">
+<span class="font-bold text-slate-700">Room AG-01</span>
+</div>
+<div class="p-3 grid grid-cols-3 gap-2">
+<!-- Seat A -->
+<div class="border-2 border-dashed border-slate-200 rounded p-2 flex flex-col items-center justify-center min-h-[80px]">
+<span class="absolute top-1 right-1 text-[8px] font-bold text-slate-400">A</span>
+<svg class="h-5 w-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[8px] font-bold text-slate-400 uppercase mt-1">Assign</span>
+</div>
+<!-- Empty Placeholder B -->
+<div class="bg-slate-50 rounded min-h-[80px]"></div>
+<!-- Empty Placeholder C -->
+<div class="bg-slate-50 rounded min-h-[80px]"></div>
+</div>
+</div>
+<!-- Room Card: AG-03 (Example with Occupants) -->
+<div class="bg-white rounded-custom border border-indigo-200 overflow-hidden shadow-sm">
+<div class="bg-slate-50 px-3 py-2 border-b border-slate-100">
+<span class="font-bold text-slate-700">Room AG-03</span>
+</div>
+<div class="p-3 grid grid-cols-3 gap-2">
+<!-- Occupant A -->
+<div class="bg-indigo-950 text-white rounded p-2 flex flex-col items-center justify-center relative min-h-[80px]">
+<span class="absolute top-1 right-1 text-[8px] font-bold text-indigo-300">A</span>
+<svg class="h-5 w-5 mb-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+</svg>
+<span class="text-[9px] font-bold uppercase tracking-tight">Harsh</span>
+</div>
+<!-- Occupant B -->
+<div class="bg-indigo-900 text-white rounded p-2 flex flex-col items-center justify-center relative min-h-[80px]">
+<span class="absolute top-1 right-1 text-[8px] font-bold text-indigo-300">B</span>
+<svg class="h-5 w-5 mb-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+</svg>
+<span class="text-[9px] font-bold uppercase tracking-tight">Alister</span>
+</div>
+<!-- Seat C -->
+<div class="border-2 border-dashed border-slate-200 rounded p-2 flex flex-col items-center justify-center min-h-[80px]">
+<span class="absolute top-1 right-1 text-[8px] font-bold text-slate-400">C</span>
+<svg class="h-4 w-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[8px] font-bold text-slate-400 uppercase">Assign</span>
+</div>
+</div>
+</div>
+<!-- Room Card: AG-04 -->
+<div class="bg-white rounded-custom border border-slate-200 overflow-hidden shadow-sm">
+<div class="bg-slate-50 px-3 py-2 border-b border-slate-100 flex justify-between items-center">
+<span class="font-bold text-slate-700">Room AG-04</span>
+</div>
+<div class="p-3 grid grid-cols-3 gap-2">
+<div class="border-2 border-dashed border-slate-200 rounded p-2 flex flex-col items-center justify-center min-h-[80px]">
+<span class="text-[8px] font-bold text-slate-400 uppercase">Assign</span>
+</div>
+<div class="border-2 border-dashed border-slate-200 rounded p-2 flex flex-col items-center justify-center min-h-[80px]">
+<span class="text-[8px] font-bold text-slate-400 uppercase">Assign</span>
+</div>
+<div class="bg-indigo-950 text-white rounded p-2 flex flex-col items-center justify-center relative min-h-[80px]">
+<span class="absolute top-1 right-1 text-[8px] font-bold text-indigo-300">C</span>
+<svg class="h-5 w-5 mb-1" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+</svg>
+<span class="text-[9px] font-bold uppercase tracking-tight">Vedant</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: RoomGrid -->
+<!-- BEGIN: DailyHistory -->
+
+<!-- END: DailyHistory -->
+</main>
+<!-- BEGIN: BottomNavigation -->
+
+<!-- END: BottomNavigation -->
+
+
+</body></html>
