@@ -6,14 +6,6 @@ import LoginScreen from './screens/LoginScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import AdminDashboardScreen from './screens/AdminDashboardScreen';
 import WebViewScreen from './screens/WebViewScreen';
-import {
-  AttendanceScreen,
-  RoomBookingScreen,
-  SickLeaveScreen,
-  RequestPassScreen,
-  PassHistoryScreen,
-  NotificationsScreen,
-} from './screens/PlaceholderScreens';
 
 // Destinations matching AppDestinations enum in Kotlin
 enum AppDestinations {
@@ -90,7 +82,7 @@ export default function App() {
         </SafeAreaView>
       );
     } else {
-      // Admin sub-screens (native styling)
+      // Admin sub-screens (rendered via dynamic WebViews)
       return (
         <SafeAreaView style={styles.container}>
           <View style={styles.header}>
@@ -105,10 +97,23 @@ export default function App() {
             </Text>
           </View>
           <View style={styles.content}>
-            {currentDestination === AppDestinations.ATTENDANCE && <AttendanceScreen />}
-            {currentDestination === AppDestinations.ROOMS && <RoomBookingScreen />}
+            {currentDestination === AppDestinations.ATTENDANCE && (
+              <WebViewScreen
+                assetPath="stitch_mobile_application_development/attendance/code.html"
+                onBack={() => setCurrentDestination(AppDestinations.DASHBOARD)}
+              />
+            )}
+            {currentDestination === AppDestinations.ROOMS && (
+              <WebViewScreen
+                assetPath="stitch_mobile_application_development/roombook/room_bookings/code.html"
+                onBack={() => setCurrentDestination(AppDestinations.DASHBOARD)}
+              />
+            )}
             {currentDestination === AppDestinations.SICK_LEAVE && (
-              <SickLeaveScreen onBackToDashboard={() => setCurrentDestination(AppDestinations.DASHBOARD)} />
+              <WebViewScreen
+                assetPath="stitch_mobile_application_development/sick/sick_leave_logs/code.html"
+                onBack={() => setCurrentDestination(AppDestinations.DASHBOARD)}
+              />
             )}
           </View>
         </SafeAreaView>
@@ -134,13 +139,41 @@ export default function App() {
             }}
           />
         )}
-        {currentDestination === AppDestinations.PASSES && <RequestPassScreen />}
-        {currentDestination === AppDestinations.HISTORY && <PassHistoryScreen />}
-        {currentDestination === AppDestinations.ATTENDANCE && <AttendanceScreen />}
-        {currentDestination === AppDestinations.ROOMS && <RoomBookingScreen />}
-        {currentDestination === AppDestinations.NOTIFICATIONS && <NotificationsScreen />}
+        {currentDestination === AppDestinations.PASSES && (
+          <WebViewScreen
+            assetPath="stitch_moibile/request_pass.html"
+            onBack={() => setCurrentDestination(AppDestinations.DASHBOARD)}
+          />
+        )}
+        {currentDestination === AppDestinations.HISTORY && (
+          <WebViewScreen
+            assetPath="stitch_moibile/pass_history.html"
+            onBack={() => setCurrentDestination(AppDestinations.DASHBOARD)}
+          />
+        )}
+        {currentDestination === AppDestinations.ATTENDANCE && (
+          <WebViewScreen
+            assetPath="stitch_moibile/attendance.html"
+            onBack={() => setCurrentDestination(AppDestinations.DASHBOARD)}
+          />
+        )}
+        {currentDestination === AppDestinations.ROOMS && (
+          <WebViewScreen
+            assetPath="stitch_moibile/room_booking.html"
+            onBack={() => setCurrentDestination(AppDestinations.DASHBOARD)}
+          />
+        )}
+        {currentDestination === AppDestinations.NOTIFICATIONS && (
+          <WebViewScreen
+            assetPath="stitch_moibile/notifications.html"
+            onBack={() => setCurrentDestination(AppDestinations.DASHBOARD)}
+          />
+        )}
         {currentDestination === AppDestinations.SICK_LEAVE && (
-          <SickLeaveScreen onBackToDashboard={() => setCurrentDestination(AppDestinations.DASHBOARD)} />
+          <WebViewScreen
+            assetPath="stitch_mobile_application_development/sick/record_sick_leave/code.html"
+            onBack={() => setCurrentDestination(AppDestinations.DASHBOARD)}
+          />
         )}
       </View>
 
