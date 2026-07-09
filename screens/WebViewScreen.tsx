@@ -31,7 +31,7 @@ export default function WebViewScreen({ assetPath, onBack }: WebViewScreenProps)
   }, [canGoBack, onBack]);
 
   const css = `
-    nav,
+    nav[class*='bottom'],
     .fixed.bottom-0,
     [class*='fixed'][class*='bottom-0'],
     [class*='fixed-bottom'],
