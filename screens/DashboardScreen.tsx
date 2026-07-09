@@ -32,7 +32,7 @@ export default function DashboardScreen({
     <SafeAreaView style={styles.safeArea}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>CampusPass</Text>
+        <Text style={styles.headerTitle}>TNPS</Text>
         <View style={styles.headerActions}>
           <TouchableOpacity style={styles.notificationButton} onPress={onNavigateToNotifications}>
             <MaterialCommunityIcons name="bell-outline" size={22} color="#4648d4" />

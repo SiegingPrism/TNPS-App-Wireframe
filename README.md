@@ -1,6 +1,6 @@
-# CampusPass (TNPS Gate Access & Campus Management System)
+# TNPS (TNPS Gate Access & Campus Management System)
 
-CampusPass is a React Native mobile application designed to streamline campus access control, digital ID verification, room bookings, and administrative operations. The app provides specialized user experiences for both **Students** and **Administrators** through a unified login portal.
+TNPS is a React Native mobile application designed to streamline campus access control, digital ID verification, room bookings, and administrative operations. The app provides specialized user experiences for both **Students** and **Administrators** through a unified login portal.
 
 ---
 
