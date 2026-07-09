@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Campus Admin - Gate & Hostel Tracking</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#464554",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "primary": "#4648d4",
+                    "surface-tint": "#494bd6",
+                    "outline": "#767586",
+                    "on-primary-container": "#fffbff",
+                    "surface-dim": "#d8dadc",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#e3dfff",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f7f9fb",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-container": "#c7c3fe",
+                    "on-background": "#191c1e",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "outline-variant": "#c7c4d7",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "primary-container": "#6063ee",
+                    "background": "#f7f9fb",
+                    "surface-variant": "#e0e3e5",
+                    "tertiary-fixed": "#6ffbbe",
+                    "surface-bright": "#f7f9fb",
+                    "inverse-surface": "#2d3133",
+                    "secondary-fixed-dim": "#c4c1fb",
+                    "on-surface": "#191c1e",
+                    "surface-container": "#eceef0",
+                    "on-tertiary-fixed": "#002113",
+                    "on-primary-fixed": "#07006c",
+                    "on-secondary-fixed": "#181445",
+                    "inverse-primary": "#c0c1ff",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-tertiary-container": "#000703",
+                    "surface-container-low": "#f2f4f6",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#006c49",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#5b598c",
+                    "tertiary-container": "#00885d",
+                    "on-primary-fixed-variant": "#2f2ebe",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#514f81",
+                    "primary-fixed": "#e1e0ff",
+                    "on-secondary-fixed-variant": "#444173",
+                    "surface-container-highest": "#e0e3e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-margin": "1rem",
+                    "stack-gap": "1rem",
+                    "section-gap": "1.5rem",
+                    "card-padding": "1.25rem",
+                    "touch-target": "2.75rem"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "label-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f7f9fb;
+            font-family: 'Inter', sans-serif;
+            color: #191c1e;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e0e3e5;
+            border-radius: 10px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky shadow-sm bg-surface dark:bg-inverse-surface z-40 flex justify-between items-center px-container-margin py-3">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed-dim hover:bg-surface-container-high transition-colors p-2 rounded-full md:hidden">menu</button>
+<h1 class="font-headline-sm text-headline-sm-mobile md:text-headline-sm text-primary dark:text-primary-fixed-dim font-extrabold tracking-tight">Campus Admin</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex bg-surface-container px-3 py-1.5 rounded-full items-center gap-2 border border-outline-variant">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md w-48" placeholder="Search students..." type="text"/>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a senior campus security administrator with a confident and trustworthy expression, wearing a sleek modern uniform. The background is a clean, minimalist campus office with soft morning light and indigo-toned branding elements, maintaining a corporate and reliable aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2QDtYG8V0ymIJDmKm0EcPbj8a6AvqUkYVIuXQeV9K7Dx3uxQeDKG_UTbB0dUD8bV9hICZUPcvO9QoscvhhstoLWk-Pf_lDI3bLx6PUFXRmHrE--BFojBUhZ0ifSBsQ2yRh69iqUZR-jho6JKk8x4sopLYwyHRxUk6fRW6Y4cuezAGSlj9QA14QA0zd8Q0LP3cPMY1Xytf7SiGGAVSkYasjW9BFKhxnTNFvAK07dMmGCCSh4QnM7Ko"/>
+</div>
+</div>
+</header>
+<div class="flex">
+<!-- NavigationDrawer (Desktop) -->
+<aside class="hidden md:flex h-screen w-[280px] sticky top-0 bg-surface-container-low dark:bg-surface-container-lowest flex-col gap-2 p-4 shadow-xl">
+<div class="flex items-center gap-3 px-2 py-4 mb-2">
+<div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-3xl">security</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Campus Admin</p>
+<p class="text-label-lg text-on-surface-variant">Global Security Head</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all rounded-full font-label-lg" href="#">
+<span class="material-symbols-outlined">approval</span> Pass Requests
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary font-bold rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">door_front</span> Gate Tracking
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all rounded-full font-label-lg" href="#">
+<span class="material-symbols-outlined">verified_user</span> Active Passes
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all rounded-full font-label-lg" href="#">
+<span class="material-symbols-outlined">apartment</span> Hostel Monitoring
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all rounded-full font-label-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span> Analytics
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all rounded-full font-label-lg" href="#">
+<span class="material-symbols-outlined">assessment</span> Reports
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant transition-all rounded-full font-label-lg" href="#">
+<span class="material-symbols-outlined">timer_off</span> Late Comers
+                </a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 p-4 md:p-8 pb-24 md:pb-8 max-w-[1200px] mx-auto w-full">
+<!-- Dashboard Hero Header -->
+<div class="mb-section-gap flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">Live Tracking</h2>
+<p class="text-on-surface-variant text-body-lg">Real-time status of students outside the campus premises.</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-container-high text-on-surface px-4 py-2 rounded-xl font-label-lg flex items-center gap-2 hover:bg-surface-variant transition-colors border border-outline-variant">
+<span class="material-symbols-outlined text-[20px]">filter_list</span> Filter
+                    </button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-xl font-label-lg flex items-center gap-2 shadow-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span> Export Log
+                    </button>
+</div>
+</div>
+<!-- Bento Stats Grid -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-section-gap">
+<div class="bg-surface-container-lowest p-card-padding rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-xl">logout</span>
+<span class="text-label-lg text-primary bg-primary/10 px-2 py-0.5 rounded-full">+12%</span>
+</div>
+<p class="text-label-lg text-on-surface-variant">Total 'Out'</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">184</h3>
+</div>
+<div class="bg-surface-container-lowest p-card-padding rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-tertiary bg-tertiary-fixed p-2 rounded-xl">apartment</span>
+</div>
+<p class="text-label-lg text-on-surface-variant">Hostel Out</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">52</h3>
+</div>
+<div class="bg-surface-container-lowest p-card-padding rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-error bg-error-container p-2 rounded-xl">alarm</span>
+</div>
+<p class="text-label-lg text-on-surface-variant">Delayed</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">14</h3>
+</div>
+<div class="bg-surface-container-lowest p-card-padding rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-secondary bg-secondary-fixed p-2 rounded-xl">verified</span>
+</div>
+<p class="text-label-lg text-on-surface-variant">Approved Today</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">412</h3>
+</div>
+</div>
+<!-- Tracking Lists Container -->
+<div class="grid lg:grid-cols-2 gap-8">
+<!-- Gate Out Category -->
+<section>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">door_front</span>
+<h4 class="font-headline-sm text-on-surface">Gate Out Logs</h4>
+<span class="ml-auto bg-primary-container text-on-primary-container px-2 py-0.5 rounded text-label-lg">132 Live</span>
+</div>
+<div class="space-y-4">
+<!-- Student Card 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-outline-variant flex gap-4 hover:shadow-md transition-all group">
+<div class="relative">
+<div class="w-16 h-16 rounded-xl overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A clean, professional headshot of a female university student with a bright smile, wearing a modern tech-themed casual outfit. The lighting is crisp and natural, with a soft-focus background of a contemporary campus courtyard. Colors are vibrant and clear, adhering to a light-mode corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlkbBJj6BBhX4Osf06p4g18M44MCiq3yd6rv32WfjAcogKY9GpN5F94au8AstagUjPRat5NWRxMl7CBa81HwoAydYoIg1gjeP0wRafNdPkTlNk30tjAIOXzmFy8rI5uSnU0W4RHNF30KZSND0C67A2ES1XSvUa5Svl_ZnWA1SrNn-Ujp4wuA_TbpOLswZ4qIsFk3zpfudwlOHz2PqGAclnEvNsL0k6AwAtShtyy56PoL_CIZ9l6mas"/>
+</div>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-tertiary-fixed-dim rounded-full border-2 border-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-on-tertiary-fixed font-bold">check</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h5 class="font-bold text-on-surface leading-tight">Sarah J. Miller</h5>
+<p class="text-label-lg text-on-surface-variant">Roll: B-TECH-21-442</p>
+</div>
+<span class="text-label-md bg-secondary-container text-on-secondary-container px-2 py-1 rounded-lg">Day Pass</span>
+</div>
+<div class="mt-3 grid grid-cols-2 gap-2 text-label-lg">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span> Out: 02:30 PM
+                                    </div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">history</span> Exp: 06:00 PM
+                                    </div>
+</div>
+<button class="mt-4 w-full py-2 bg-surface-container-high text-primary font-bold rounded-xl text-label-lg hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2 group-hover:bg-primary-container group-hover:text-on-primary-container">
+<span class="material-symbols-outlined text-[18px]">how_to_reg</span> Mark Returned
+                                </button>
+</div>
+</div>
+<!-- Student Card 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-outline-variant flex gap-4 hover:shadow-md transition-all group">
+<div class="relative">
+<div class="w-16 h-16 rounded-xl overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A focused portrait of a male student wearing a smart casual jacket, looking towards the camera with a calm expression. The setting is a bright, modern university hall with glass walls and professional lighting. The image style is sharp, clean, and follows a high-quality institutional photography aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC46UZuvQclw41Ei9HYCR9kW9b5755ZoXcNnOBY7mCUgPsbWkgAU1X1KPqlAP-Z_pgQqSTp6Fl_31tpkRezRXlVCWaXlHiSBV2AkxI2HbIVx8n9WsR3uSki6tThNA4WEj1gl_TUCIZsFgwh9vVAmoKg-uNixXmmcPJ9J8_pGUmEQuobRV7L2Fwy2rJ4UhRYOAiTFDJWzMBHJP4jabujyI_Hs2MG_ftmGnbLGsbmxz6TU2WOYYYsVn8z"/>
+</div>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-error rounded-full border-2 border-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-white font-bold">priority_high</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h5 class="font-bold text-on-surface leading-tight">David Chen</h5>
+<p class="text-label-lg text-on-surface-variant">Roll: MBA-22-108</p>
+</div>
+<span class="text-label-md bg-error-container text-on-error-container px-2 py-1 rounded-lg">Delayed</span>
+</div>
+<div class="mt-3 grid grid-cols-2 gap-2 text-label-lg">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span> Out: 11:15 AM
+                                    </div>
+<div class="flex items-center gap-1.5 text-error font-bold">
+<span class="material-symbols-outlined text-[16px]">history</span> Exp: 04:00 PM
+                                    </div>
+</div>
+<button class="mt-4 w-full py-2 bg-surface-container-high text-primary font-bold rounded-xl text-label-lg hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">how_to_reg</span> Mark Returned
+                                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Hostel Out Category -->
+<section>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">apartment</span>
+<h4 class="font-headline-sm text-on-surface">Hostel Out Logs</h4>
+<span class="ml-auto bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-label-lg">52 Live</span>
+</div>
+<div class="space-y-4">
+<!-- Student Card 3 -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-outline-variant flex gap-4 hover:shadow-md transition-all group">
+<div class="relative">
+<div class="w-16 h-16 rounded-xl overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a student with a friendly smile, photographed in a modern campus environment during the late afternoon. The lighting is warm and directional, creating soft shadows. The overall image quality is premium, clean, and professional, suitable for a high-end management dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo-b-aSI9OlGkj13l21y0NIgA5_00Jt6qe702SyPq5ziFJptsYiuJhCav_g0XZubBbW1gQyKHdU4iBKoyHKPmGPndZ9JcgAp2PSJYGIdSXWuYPY1nHcvn4hmoW2uZfmf97KMNLARmu-ggpUm77e_bA58w7oJzdeG7j3b_fh0W0cfQOElRB-Nfg28NMP_UE3vhGhe_Fl7kXgpnaqWzris6DKyPEpDg92xGvgtSH1ag94XfHFiOZ1TF4"/>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h5 class="font-bold text-on-surface leading-tight">Emily Watson</h5>
+<p class="text-label-lg text-on-surface-variant">Hostel: H4-Block C</p>
+</div>
+<span class="text-label-md bg-primary-fixed text-on-primary-fixed px-2 py-1 rounded-lg">Home Visit</span>
+</div>
+<div class="mt-3 grid grid-cols-2 gap-2 text-label-lg">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">flight_takeoff</span> Exit: Oct 24
+                                    </div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">flight_land</span> Return: Oct 27
+                                    </div>
+</div>
+<button class="mt-4 w-full py-2 bg-surface-container-high text-primary font-bold rounded-xl text-label-lg hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">check_circle</span> Confirm Return
+                                </button>
+</div>
+</div>
+<!-- Student Card 4 -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl shadow-sm border border-outline-variant flex gap-4 hover:shadow-md transition-all group">
+<div class="relative">
+<div class="w-16 h-16 rounded-xl overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A portrait of a male graduate student with a thoughtful expression, wearing glasses and a collegiate sweatshirt. The background is a sophisticated campus library with rows of books and warm ambient lighting. The visual style is crisp, authoritative, and clean, following an institutional color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIg32Qidf6IkhLNc_xhyNdhZ5Y0tXJ8h31XsIoX85a8Tlqpnj4or5HFdau5wRsQ0qo-iRubDZP_W7S580PjrFB2NfOnp-Sz5V5VHwYnwfD1fc4ird9ruxZ6a4OtpTsHG50n-HTJK0Sxf9note84i2FRc6qRdBiFPQqaywbGFnzF6H0b23J_W5muT-yS9jhOluHAa6ItG5iu3NvmZKtfjSOld14DUFK03hLzhiddMiBBtbgNEUKLwcJ"/>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h5 class="font-bold text-on-surface leading-tight">Marcus Thorne</h5>
+<p class="text-label-lg text-on-surface-variant">Hostel: H1-Alpha</p>
+</div>
+<span class="text-label-md bg-tertiary-fixed text-on-tertiary-fixed px-2 py-1 rounded-lg">Permission</span>
+</div>
+<div class="mt-3 grid grid-cols-2 gap-2 text-label-lg">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span> Out: 08:00 AM
+                                    </div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">history</span> Exp: 10:00 PM
+                                    </div>
+</div>
+<button class="mt-4 w-full py-2 bg-surface-container-high text-primary font-bold rounded-xl text-label-lg hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">check_circle</span> Confirm Return
+                                </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+
+<!-- Success Feedback Overlay (Hidden by Default) -->
+<div class="fixed bottom-24 md:bottom-8 right-1/2 translate-x-1/2 bg-on-surface text-surface px-6 py-3 rounded-full flex items-center gap-3 shadow-2xl opacity-0 pointer-events-none transition-all duration-300 z-[100]" id="success-toast">
+<span class="material-symbols-outlined text-tertiary-fixed">check_circle</span>
+<span class="font-label-lg">Student successfully marked as returned.</span>
+</div>
+<script>
+        // Simple Micro-interaction for "Mark Returned"
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.innerText.includes('Returned') || btn.innerText.includes('Return')) {
+                btn.addEventListener('click', function() {
+                    const card = this.closest('.bg-surface-container-lowest');
+                    
+                    // Visual feedback
+                    this.innerHTML = '<span class="material-symbols-outlined animate-spin">refresh</span> Processing...';
+                    this.disabled = true;
+
+                    setTimeout(() => {
+                        // Success Toast
+                        const toast = document.getElementById('success-toast');
+                        toast.classList.remove('opacity-0', 'pointer-events-none');
+                        toast.classList.add('opacity-100');
+                        
+                        // Hide card with animation
+                        card.style.transition = 'all 0.5s ease-in-out';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateX(50px)';
+                        
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 500);
+
+                        setTimeout(() => {
+                            toast.classList.add('opacity-0', 'pointer-events-none');
+                            toast.classList.remove('opacity-100');
+                        }, 3000);
+                    }, 800);
+                });
+            }
+        });
+    </script>
+</body></html>

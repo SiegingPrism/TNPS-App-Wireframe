@@ -8,9 +8,6 @@ local.properties
 /android/app/build/
 /android/.gradle/
 /android/local.properties
-/android/app/src/main/assets/stitch_mobile_application_development/
-/android/app/src/main/assets/stitch_moibile/
-
 # iOS build and pods
 ios/Pods/
 ios/build/

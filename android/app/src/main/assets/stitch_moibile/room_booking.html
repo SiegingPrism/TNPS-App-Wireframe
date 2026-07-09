@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Room Booking</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#4edea3",
+                        "outline": "#767586",
+                        "on-tertiary-container": "#000703",
+                        "on-tertiary-fixed": "#002113",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-container": "#514f81",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f7f9fb",
+                        "on-secondary-fixed-variant": "#444173",
+                        "background": "#f7f9fb",
+                        "secondary-container": "#c7c3fe",
+                        "surface-container": "#eceef0",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#07006c",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#4648d4",
+                        "on-surface-variant": "#464554",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#c0c1ff",
+                        "secondary-fixed": "#e3dfff",
+                        "secondary": "#5b598c",
+                        "primary-fixed": "#e1e0ff",
+                        "surface-dim": "#d8dadc",
+                        "outline-variant": "#c7c4d7",
+                        "tertiary": "#006c49",
+                        "on-primary-container": "#fffbff",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "surface-variant": "#e0e3e5",
+                        "on-surface": "#191c1e",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed-dim": "#c4c1fb",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#181445",
+                        "on-background": "#191c1e",
+                        "surface-tint": "#494bd6",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-low": "#f2f4f6",
+                        "surface": "#f7f9fb",
+                        "tertiary-container": "#00885d",
+                        "primary-container": "#6063ee",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "available": "#22c55e",
+                        "booked": "#fbbf24"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "1rem",
+                        "stack-gap": "1rem",
+                        "section-gap": "1.5rem",
+                        "card-padding": "1.25rem",
+                        "touch-target": "2.75rem"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-lg": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "display-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-lg": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .bed-card {
+            transition: all 0.2s ease-in-out;
+        }
+        .bed-card:active {
+            transform: scale(0.98);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background dark:bg-background flex justify-between items-center px-container-margin h-touch-target shadow-sm md:shadow-none transition-transform duration-300" id="top-app-bar">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A small, professional avatar portrait of a user. The lighting is clean and bright, set against a neutral gray background. The subject is a young adult in professional attire. 64x64 resolution, high quality, corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTxHarmRE7nWFHFC2h0ntCKufXlyqnVUh5t_MLxVBVdYh-ao6XtBn4yvavz-9HiP93ZQ6RSOBckZ28P9s4xN5YuaR6dkrU_KdQOIjlGDt7WiuqrjIc1ryji35iVp8_OFQwoZFuGqGiYa0cZVB4M2ZasqibiBSy4X0BDU8C8gq65cXO_PqSre_bkOKQuKZk4uV0mbva4yIeblynq3ho1VZlnhzcMRMKvWO2ZqnbkaYEKKEBnSyLvoK61jg2QBfiSVYu6VLVYYNtL6o"/>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold tracking-tight">CampusPass</h1>
+</div>
+<!-- Desktop Nav (Hidden on Mobile) -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-label-lg text-label-lg text-outline hover:text-primary transition-colors flex items-center gap-1" href="dashboard.html">
+<span class="material-symbols-outlined text-[18px]">dashboard</span> Dashboard
+            </a>
+<a class="font-label-lg text-label-lg text-outline hover:text-primary transition-colors flex items-center gap-1" href="request_pass.html">
+<span class="material-symbols-outlined text-[18px]">confirmation_number</span> Passes
+            </a>
+<a class="font-label-lg text-label-lg text-outline hover:text-primary transition-colors flex items-center gap-1" href="pass_history.html">
+<span class="material-symbols-outlined text-[18px]">history</span> History
+            </a>
+<a class="font-label-lg text-label-lg text-outline hover:text-primary transition-colors flex items-center gap-1" href="attendance.html">
+<span class="material-symbols-outlined text-[18px]">event_available</span> Attendance
+            </a>
+<a class="font-label-lg text-label-lg text-primary bg-primary-container/10 px-3 py-1.5 rounded-full flex items-center gap-1" href="room_booking.html">
+<span class="material-symbols-outlined text-[18px]">meeting_room</span> Rooms
+            </a>
+</nav>
+<a href="notifications.html" class="text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</a>
+</header>
+<main class="pt-20 px-container-margin md:px-8 max-w-[1200px] mx-auto pb-24 md:pb-8 flex flex-col md:flex-row gap-8">
+<!-- Sidebar Content (Desktop) / Top Content (Mobile) -->
+<aside class="w-full md:w-64 flex-shrink-0 flex flex-col gap-6">
+<!-- My Booking Section -->
+<div class="bg-surface-container-lowest rounded-xl p-card-padding shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-outline-variant/30">
+<h2 class="font-label-lg text-label-lg text-outline uppercase tracking-wider mb-3">My Booking</h2>
+<div class="text-on-surface-variant font-body-md py-2 px-3 bg-surface-container-low rounded-lg text-center">
+                    No active booking
+                </div>
+</div>
+<!-- Legend Section -->
+<div class="bg-surface-container-lowest rounded-xl p-card-padding shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-outline-variant/30 hidden md:block">
+<h2 class="font-label-lg text-label-lg text-outline uppercase tracking-wider mb-4">Legend</h2>
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<div class="w-full bg-available text-white py-2 rounded-md text-center font-label-lg text-label-lg font-bold shadow-sm">Available</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-full bg-booked text-white py-2 rounded-md text-center font-label-lg text-label-lg font-bold shadow-sm">Locked/Booked</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col gap-6">
+<!-- Filters -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-outline-variant/30 flex flex-col gap-4">
+<!-- Block Selector -->
+<div class="flex overflow-x-auto hide-scrollbar gap-2 pb-1">
+<button class="px-5 py-2 rounded-full bg-primary text-white font-label-lg text-label-lg flex-shrink-0 shadow-sm active:scale-95 transition-transform">Block A</button>
+<button class="px-5 py-2 rounded-full bg-surface-container-low text-on-surface-variant border border-outline-variant/50 font-label-lg text-label-lg flex-shrink-0 hover:bg-surface-container-high transition-colors">Block B</button>
+</div>
+<!-- Floor Selector -->
+<div class="flex overflow-x-auto hide-scrollbar gap-2 pb-1">
+<button class="px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md flex-shrink-0 border border-secondary-container">First Floor</button>
+<button class="px-4 py-1.5 rounded-full bg-transparent text-on-surface-variant border border-outline-variant font-label-md text-label-md flex-shrink-0 hover:bg-surface-container-low transition-colors">Ground Floor</button>
+<button class="px-4 py-1.5 rounded-full bg-transparent text-on-surface-variant border border-outline-variant font-label-md text-label-md flex-shrink-0 hover:bg-surface-container-low transition-colors">Second Floor</button>
+</div>
+</div>
+<!-- Rooms Header -->
+<div class="flex items-center justify-between mt-2">
+<h3 class="font-headline-sm text-headline-sm text-on-background">Rooms: A - First Floor</h3>
+<!-- Mobile Legend (Inline) -->
+<div class="flex md:hidden gap-3 items-center">
+<div class="flex items-center gap-1.5">
+<div class="w-3 h-3 rounded-full bg-available"></div>
+<span class="font-label-md text-label-md text-outline">Avail</span>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="w-3 h-3 rounded-full bg-booked"></div>
+<span class="font-label-md text-label-md text-outline">Booked</span>
+</div>
+</div>
+</div>
+<!-- Rooms Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Room Card: Triple -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-outline-variant/20 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<h4 class="font-label-lg text-label-lg text-on-background">Room AF-01</h4>
+<span class="bg-surface-container-high text-on-surface-variant font-label-md text-[10px] px-2 py-0.5 rounded-sm">Triple • Cap 3</span>
+</div>
+<div class="flex gap-2 h-16">
+<button class="bed-card flex-1 bg-available rounded-lg flex flex-col items-center justify-center text-white p-1">
+<span class="font-label-lg text-label-lg">Bed A</span>
+<span class="font-label-md text-[9px] opacity-90 uppercase">Available</span>
+</button>
+<button class="bed-card flex-1 bg-available rounded-lg flex flex-col items-center justify-center text-white p-1">
+<span class="font-label-lg text-label-lg">Bed B</span>
+<span class="font-label-md text-[9px] opacity-90 uppercase">Available</span>
+</button>
+<button class="bed-card flex-1 bg-available rounded-lg flex flex-col items-center justify-center text-white p-1">
+<span class="font-label-lg text-label-lg">Bed C</span>
+<span class="font-label-md text-[9px] opacity-90 uppercase">Available</span>
+</button>
+</div>
+</div>
+<!-- Room Card: Single -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-outline-variant/20 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<h4 class="font-label-lg text-label-lg text-on-background">Room AF-02</h4>
+<span class="bg-surface-container-high text-on-surface-variant font-label-md text-[10px] px-2 py-0.5 rounded-sm">Single • Cap 1</span>
+</div>
+<div class="flex gap-2 h-16">
+<button class="bed-card flex-1 bg-available rounded-lg flex flex-col items-center justify-center text-white p-1">
+<span class="font-label-lg text-label-lg">Bed A</span>
+<span class="font-label-md text-[9px] opacity-90 uppercase">Available</span>
+</button>
+</div>
+</div>
+<!-- Room Card: Double -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-outline-variant/20 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<h4 class="font-label-lg text-label-lg text-on-background">Room AF-03</h4>
+<span class="bg-surface-container-high text-on-surface-variant font-label-md text-[10px] px-2 py-0.5 rounded-sm">Double • Cap 2</span>
+</div>
+<div class="flex gap-2 h-16">
+<button class="bed-card flex-1 bg-available rounded-lg flex flex-col items-center justify-center text-white p-1">
+<span class="font-label-lg text-label-lg">Bed A</span>
+<span class="font-label-md text-[9px] opacity-90 uppercase">Available</span>
+</button>
+<button class="bed-card flex-1 bg-available rounded-lg flex flex-col items-center justify-center text-white p-1">
+<span class="font-label-lg text-label-lg">Bed B</span>
+<span class="font-label-md text-[9px] opacity-90 uppercase">Available</span>
+</button>
+</div>
+</div>
+<!-- Room Card: Mixed Status -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-outline-variant/20 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<h4 class="font-label-lg text-label-lg text-on-background">Room AF-04</h4>
+<span class="bg-surface-container-high text-on-surface-variant font-label-md text-[10px] px-2 py-0.5 rounded-sm">Double • Cap 2</span>
+</div>
+<div class="flex gap-2 h-16">
+<button class="bed-card flex-1 bg-available rounded-lg flex flex-col items-center justify-center text-white p-1">
+<span class="font-label-lg text-label-lg">Bed A</span>
+<span class="font-label-md text-[9px] opacity-90 uppercase">Available</span>
+</button>
+<div class="flex-1 bg-booked rounded-lg flex flex-col items-center justify-center text-white p-1 opacity-80 cursor-not-allowed">
+<span class="font-label-lg text-label-lg">Bed B</span>
+<span class="font-label-md text-[9px] opacity-90 truncate w-full text-center px-1">ARPIT (25011009)</span>
+</div>
+</div>
+</div>
+<!-- Room Card: Triple Mixed -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-outline-variant/20 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<h4 class="font-label-lg text-label-lg text-on-background">Room AF-05</h4>
+<span class="bg-surface-container-high text-on-surface-variant font-label-md text-[10px] px-2 py-0.5 rounded-sm">Triple • Cap 3</span>
+</div>
+<div class="flex gap-2 h-16">
+<button class="bed-card flex-1 bg-available rounded-lg flex flex-col items-center justify-center text-white p-1">
+<span class="font-label-lg text-label-lg">Bed A</span>
+<span class="font-label-md text-[9px] opacity-90 uppercase">Available</span>
+</button>
+<div class="flex-1 bg-booked rounded-lg flex flex-col items-center justify-center text-white p-1 opacity-80 cursor-not-allowed">
+<span class="font-label-lg text-label-lg">Bed B</span>
+<span class="font-label-md text-[9px] opacity-90 truncate w-full text-center px-1">ROHAN (25008001)</span>
+</div>
+<button class="bed-card flex-1 bg-available rounded-lg flex flex-col items-center justify-center text-white p-1">
+<span class="font-label-lg text-label-lg">Bed C</span>
+<span class="font-label-md text-[9px] opacity-90 uppercase">Available</span>
+</button>
+</div>
+</div>
+<!-- Room Card: Triple All Available -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-outline-variant/20 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<h4 class="font-label-lg text-label-lg text-on-background">Room AF-06</h4>
+<span class="bg-surface-container-high text-on-surface-variant font-label-md text-[10px] px-2 py-0.5 rounded-sm">Triple • Cap 3</span>
+</div>
+<div class="flex gap-2 h-16">
+<button class="bed-card flex-1 bg-available rounded-lg flex flex-col items-center justify-center text-white p-1">
+<span class="font-label-lg text-label-lg">Bed A</span>
+<span class="font-label-md text-[9px] opacity-90 uppercase">Available</span>
+</button>
+<button class="bed-card flex-1 bg-available rounded-lg flex flex-col items-center justify-center text-white p-1">
+<span class="font-label-lg text-label-lg">Bed B</span>
+<span class="font-label-md text-[9px] opacity-90 uppercase">Available</span>
+</button>
+<button class="bed-card flex-1 bg-available rounded-lg flex flex-col items-center justify-center text-white p-1">
+<span class="font-label-lg text-label-lg">Bed C</span>
+<span class="font-label-md text-[9px] opacity-90 uppercase">Available</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-lowest dark:bg-surface-container-lowest shadow-[0_-4px_20px_rgba(0,0,0,0.05)] flex justify-around items-center h-20 px-2 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform p-2 rounded-lg" href="dashboard.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label-md text-label-md mt-1">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform p-2 rounded-lg" href="request_pass.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">confirmation_number</span>
+<span class="font-label-md text-label-md mt-1">Passes</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform p-2 rounded-lg" href="pass_history.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+<span class="font-label-md text-label-md mt-1">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform p-2 rounded-lg" href="attendance.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">event_available</span>
+<span class="font-label-md text-label-md mt-1">Attendance</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-container text-on-secondary-container dark:text-on-secondary-container rounded-full px-4 py-1 hover:bg-surface-container-high transition-colors active:scale-90 transition-transform" href="room_booking.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">meeting_room</span>
+<span class="font-label-md text-label-md mt-1">Rooms</span>
+</a>
+</nav>
+<script>
+        // Optional: Add simple scroll effect to top app bar
+        window.addEventListener('scroll', () => {
+            const topBar = document.getElementById('top-app-bar');
+            if (window.scrollY > 10) {
+                topBar.classList.add('shadow-md');
+            } else {
+                topBar.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>

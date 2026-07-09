@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Barcode Scanner - TNPS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#c0c1ff",
+                    "tertiary-container": "#00885d",
+                    "surface-dim": "#d8dadc",
+                    "surface-bright": "#f7f9fb",
+                    "background": "#f7f9fb",
+                    "on-secondary-container": "#514f81",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#c7c4d7",
+                    "surface-container": "#eceef0",
+                    "surface": "#f7f9fb",
+                    "on-secondary-fixed": "#181445",
+                    "on-secondary-fixed-variant": "#444173",
+                    "on-background": "#191c1e",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary": "#4648d4",
+                    "on-tertiary-container": "#000703",
+                    "on-surface-variant": "#464554",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed-variant": "#2f2ebe",
+                    "inverse-surface": "#2d3133",
+                    "on-primary-container": "#fffbff",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed": "#002113",
+                    "tertiary": "#006c49",
+                    "primary-fixed": "#e1e0ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-primary-fixed": "#07006c",
+                    "on-error-container": "#93000a",
+                    "secondary": "#5b598c",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "surface-variant": "#e0e3e5",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "tertiary-fixed": "#6ffbbe",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-fixed-dim": "#c4c1fb",
+                    "secondary-fixed": "#e3dfff",
+                    "on-surface": "#191c1e",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#494bd6",
+                    "secondary-container": "#c7c3fe",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#767586",
+                    "primary-container": "#6063ee",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch-target": "2.75rem",
+                    "section-gap": "1.5rem",
+                    "container-margin": "1rem",
+                    "card-padding": "1.25rem",
+                    "stack-gap": "1rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["11px", {"lineHeight": "14px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .scanner-frame {
+            position: relative;
+            overflow: hidden;
+        }
+        .scanner-line {
+            width: 100%;
+            height: 2px;
+            background: #4648d4;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 15px 5px rgba(70, 72, 212, 0.4);
+            animation: scan 3s infinite linear;
+        }
+        @keyframes scan {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
+        }
+        .touch-ripple:active {
+            transform: scale(0.96);
+            transition: transform 0.1s ease;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24 md:pb-0">
+<!-- Top Navigation Shell -->
+<nav class="bg-surface shadow-sm w-full top-0 sticky z-50 flex items-center justify-between px-container-margin py-3">
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary font-bold tracking-tight">TNPS</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-6 mr-6">
+<a class="font-label-lg text-primary flex items-center gap-2" href="#"><span class="material-symbols-outlined">dashboard</span> Dashboard</a>
+<a class="font-label-lg text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2" href="#"><span class="material-symbols-outlined">group</span> Students</a>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a campus security officer in a neat blue uniform, looking friendly and authoritative. The background is a clean, modern institutional office with soft morning light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBccfX8LVMVKlwKmBDSuoKsehqo_AWc6njllcC9f8iJt6DIPbFAEXzSTWe4RttA8BL8zE-QI76YCu163HcDKAfmImLu6mVvprcuFCPgNa4By1NAiXtuZB7YXhX2xikTMuqb52syHmWow4m3LWxxommvMWiRB3Ft7lMzc31zmNDiRt8HyoDsa67-VbeokbO4JHtm_YiHNAr9rVrRlixX1geRoPBUzN5x5KNq55EDikXeT3k69oUQ2OSj"/>
+</div>
+</div>
+</nav>
+<main class="max-w-[1200px] mx-auto px-container-margin py-6">
+<!-- Header & Toggle Section -->
+<header class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Barcode Scanner</h2>
+<p class="font-body-md text-on-surface-variant">Manage entry/exit verification for students and staff.</p>
+</div>
+<!-- Mode Toggle -->
+<div class="flex bg-surface-container-highest p-1 rounded-lg w-full md:w-auto">
+<button class="flex-1 md:px-6 py-2 rounded-md font-label-lg transition-all bg-surface text-primary shadow-sm" id="gate-mode">
+                    Campus Gate
+                </button>
+<button class="flex-1 md:px-6 py-2 rounded-md font-label-lg transition-all text-on-surface-variant hover:text-on-surface" id="hostel-mode">
+                    Hostel Wing
+                </button>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left: Scanner Viewport (Bento Layout) -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<div class="bg-surface-container-lowest rounded-xl shadow-lg p-card-padding border border-outline-variant scanner-frame min-h-[400px] flex flex-col items-center justify-center">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-90" data-alt="A POV shot from a smartphone camera looking at a campus gate entrance. The background is slightly blurred showing palm trees and modern campus architecture under a bright, high-contrast daylight. A student is standing in the distance holding an ID card ready for scanning." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIDRK8UYHYX2PkOTR59Va11NnnvUxspvc_A36Fikg8LwG_WJi0YJ-qM4JvdJ2lXiglRWabXWSLc0BhvlnZTFAJB4wRJEUdJYpb1Dd70RgC12HVw1QwBn6k1xPHl1KngqPclh3nqPstgY-3IZ8nEQUExEAa6ILxQabeDqK61uZZA-yotVqNZprOOxhjU4sj9x5XmqfCxdFbuioIKwJFpVMKNy_00MVpHovSTLqDTyDs0LYsCXNd6Z9H"/>
+<div class="absolute inset-0 bg-black/10"></div>
+</div>
+<!-- Scanner Focus Frame -->
+<div class="relative z-10 w-64 h-64 md:w-80 md:h-80 border-2 border-white/50 rounded-3xl flex items-center justify-center">
+<!-- Corners -->
+<div class="absolute -top-1 -left-1 w-10 h-10 border-t-4 border-l-4 border-primary rounded-tl-xl"></div>
+<div class="absolute -top-1 -right-1 w-10 h-10 border-t-4 border-r-4 border-primary rounded-tr-xl"></div>
+<div class="absolute -bottom-1 -left-1 w-10 h-10 border-b-4 border-l-4 border-primary rounded-bl-xl"></div>
+<div class="absolute -bottom-1 -right-1 w-10 h-10 border-b-4 border-r-4 border-primary rounded-br-xl"></div>
+<!-- Animated Scanning Line -->
+<div class="scanner-line"></div>
+<p class="absolute -bottom-12 font-label-lg text-white bg-black/40 px-4 py-1 rounded-full backdrop-blur-md">Position Barcode in Frame</p>
+</div>
+<!-- Scanner Controls -->
+<div class="absolute bottom-6 flex gap-4 z-10">
+<button class="w-12 h-12 flex items-center justify-center bg-white/20 hover:bg-white/40 backdrop-blur-lg rounded-full text-white transition-all touch-ripple">
+<span class="material-symbols-outlined">flashlight_on</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center bg-white/20 hover:bg-white/40 backdrop-blur-lg rounded-full text-white transition-all touch-ripple">
+<span class="material-symbols-outlined">flip_camera_ios</span>
+</button>
+<button class="px-6 h-12 flex items-center justify-center bg-primary text-white rounded-full font-label-lg shadow-lg touch-ripple">
+                            Capture Manual
+                        </button>
+</div>
+</div>
+<!-- Manual Entry Section -->
+<div class="bg-surface-container-low rounded-xl p-card-padding border border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm mb-4">Manual UID Entry</h3>
+<div class="flex flex-col md:flex-row gap-3">
+<div class="flex-grow">
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 h-12 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Enter Student UID (e.g. STU-2024-001)" type="text"/>
+</div>
+<button class="bg-secondary text-white px-8 h-12 rounded-lg font-label-lg hover:bg-secondary-container hover:text-on-secondary-container transition-colors touch-ripple">
+                            Verify Identity
+                        </button>
+</div>
+</div>
+</div>
+<!-- Right: Live Feed & Stats -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- Status Stats -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-tertiary-container/10 p-4 rounded-xl border border-tertiary/20">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-tertiary">how_to_reg</span>
+<span class="text-xs font-bold text-tertiary uppercase tracking-wider">Entries</span>
+</div>
+<p class="font-headline-md text-headline-md text-on-surface">1,284</p>
+<p class="text-[10px] text-tertiary-container font-semibold mt-1">↑ 12% vs Yesterday</p>
+</div>
+<div class="bg-error-container/10 p-4 rounded-xl border border-error/20">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-error">block</span>
+<span class="text-xs font-bold text-error uppercase tracking-wider">Denied</span>
+</div>
+<p class="font-headline-md text-headline-md text-on-surface">14</p>
+<p class="text-[10px] text-error font-semibold mt-1">↓ 2 cases today</p>
+</div>
+</div>
+<!-- Live Feed Scans -->
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex-grow shadow-sm">
+<div class="px-card-padding py-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm">Live Scan Feed</h3>
+<span class="flex items-center gap-1.5 text-[10px] font-bold text-error animate-pulse">
+<span class="w-2 h-2 bg-error rounded-full"></span> LIVE
+                        </span>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Scan Record 1: Success -->
+<div class="p-card-padding flex items-center gap-4 hover:bg-surface-container-lowest transition-colors group">
+<div class="relative">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-tertiary">
+<img class="w-full h-full object-cover" data-alt="A high-resolution student portrait of a young woman with a warm smile, wearing a casual university hoodie. The background is a soft-focus library setting, using a corporate minimalist aesthetic with cool blue and purple tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFuj3GfFU27ZhRZHw8qH02PXi5eJNWPBolDrhO-3vLW98SLM2OrBLBraSCnnygpH5oUWFsPgs8-a4hlAnef2SYl6rkXoF66lTIbq9zji2aC9b29kt2KJSDwsfnAx2hkxjOqSniIaos5rBnG3BjsVv0YjUX9sspkbiVK0x31QJL_M-OBKFZFlxaM98x9RsBjwP2x6RXI7hAmOSEFK5O1xE7o5i8J9-Qi9YPpIZABnSz06DZV_YA08dN"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-tertiary text-white rounded-full p-0.5 border-2 border-surface">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-body-lg font-semibold text-on-surface">Ananya Sharma</h4>
+<span class="text-[10px] text-on-surface-variant font-medium">10:24 AM</span>
+</div>
+<p class="text-xs text-on-surface-variant">UID: STU-882193</p>
+<div class="mt-1">
+<span class="px-2 py-0.5 rounded-full bg-tertiary/10 text-tertiary text-[10px] font-bold uppercase tracking-tighter">Access Granted</span>
+</div>
+</div>
+</div>
+<!-- Scan Record 2: Denied -->
+<div class="p-card-padding flex items-center gap-4 hover:bg-surface-container-lowest transition-colors group bg-error/5">
+<div class="relative">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-error">
+<img class="w-full h-full object-cover grayscale opacity-80" data-alt="A student ID photo of a young man with a serious expression, shot against a neutral grey wall. He is wearing a dark polo shirt. The lighting is direct and clear, typical of institutional documentation photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzZ0aKKO3WeD8GvxF8NrJLg1QDIsuR0H2gW8DGZu0f6aC7lmKwC_xW72HydxXcB1UV0JoeJEWYpuiyOjKxLgDpIu4GS3woYnTpam4v1XDQA6cvTGejtikqqH19VYiHQCyuXmk6pTntjXhcEdQL8pasKNyemstJYL2rtU9d21IA5yezqqs_Wnie6zGnElDO77MX1axK8WA5trtbve0U_DRPtB0eJGlT3bO7Qeo4mhEOzbS01PUKJm1S"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-error text-white rounded-full p-0.5 border-2 border-surface">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-body-lg font-semibold text-on-surface">Mark J. Thompson</h4>
+<span class="text-[10px] text-on-surface-variant font-medium">10:18 AM</span>
+</div>
+<p class="text-xs text-on-surface-variant">UID: STU-992011</p>
+<div class="mt-1 flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-error/10 text-error text-[10px] font-bold uppercase tracking-tighter">Access Denied</span>
+<span class="text-[10px] text-error font-medium italic">Expired Pass</span>
+</div>
+</div>
+</div>
+<!-- Scan Record 3: Success -->
+<div class="p-card-padding flex items-center gap-4 hover:bg-surface-container-lowest transition-colors group">
+<div class="relative">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-tertiary">
+<img class="w-full h-full object-cover" data-alt="A portrait of a male student with glasses and a friendly face, wearing a denim jacket. He is standing outdoors in a garden area of the campus, with sunlight filtering through leaves, creating a bright and trustworthy appearance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCptN21TruW9Gj77uUFLXTH5lkZpaEBp4DQocK4_39W0FRCsWYGJqgzyiZq5YMUfjbmxFCZNc_r6vbLC0qALTnzTw8JEuPlQ-tyR1O92hwFt8AKQAW6YQPFMO7HcM4WPv_Jn7w0MkfdMIaa8lEfxDS6Be4UTvLLLWJ8p4avmchS0FMCddWSCk54sVwgvq7VsVxKa9woMa57hjkrWYQJI3ZZyKMzY2-InUPhTedaD4m5_nUX9NA6wdLk"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-tertiary text-white rounded-full p-0.5 border-2 border-surface">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-body-lg font-semibold text-on-surface">Liam Carter</h4>
+<span class="text-[10px] text-on-surface-variant font-medium">09:55 AM</span>
+</div>
+<p class="text-xs text-on-surface-variant">UID: STU-112344</p>
+<div class="mt-1">
+<span class="px-2 py-0.5 rounded-full bg-tertiary/10 text-tertiary text-[10px] font-bold uppercase tracking-tighter">Access Granted</span>
+</div>
+</div>
+</div>
+<!-- Scan Record 4: Success -->
+<div class="p-card-padding flex items-center gap-4 hover:bg-surface-container-lowest transition-colors group">
+<div class="relative">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-tertiary">
+<img class="w-full h-full object-cover" data-alt="A student ID photo of an Asian male student with short hair, wearing a white button-down shirt. The photo is bright and clear with a blue-toned background gradient. He is looking directly at the camera with a confident expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZa-Ml-aLOoGkFfiubhxQNT3zw4FmFIB9i32VTD2TnvF4lbc0oNqIFRw2uHOwC3uq_4LCGe2O5kENJADhJCkV6DOCAStfIximxR_cpkT2JJoMDorcb1D2UADu_MUcFdkB0yufdhfl3DHVEed7t0iAs7knoe7OxUvLY-tDnOVI7QBijUXw8j4XTVljVuB0XraysGA-SmtvkSBb-It7D98ClNe0cFe_UkCTSlXaot-QNNm4-LEqzBhHp"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-tertiary text-white rounded-full p-0.5 border-2 border-surface">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-body-lg font-semibold text-on-surface">Chen Wei</h4>
+<span class="text-[10px] text-on-surface-variant font-medium">09:42 AM</span>
+</div>
+<p class="text-xs text-on-surface-variant">UID: STU-445672</p>
+<div class="mt-1">
+<span class="px-2 py-0.5 rounded-full bg-tertiary/10 text-tertiary text-[10px] font-bold uppercase tracking-tighter">Access Granted</span>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full py-4 bg-surface-container-low text-primary font-label-lg hover:bg-surface-container-high transition-colors">
+                        View Detailed Scan History
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Navigation Shell -->
+
+<!-- Interactions Script -->
+<script>
+        document.getElementById('gate-mode').addEventListener('click', function() {
+            this.classList.add('bg-surface', 'text-primary', 'shadow-sm');
+            this.classList.remove('text-on-surface-variant');
+            document.getElementById('hostel-mode').classList.remove('bg-surface', 'text-primary', 'shadow-sm');
+            document.getElementById('hostel-mode').classList.add('text-on-surface-variant');
+        });
+
+        document.getElementById('hostel-mode').addEventListener('click', function() {
+            this.classList.add('bg-surface', 'text-primary', 'shadow-sm');
+            this.classList.remove('text-on-surface-variant');
+            document.getElementById('gate-mode').classList.remove('bg-surface', 'text-primary', 'shadow-sm');
+            document.getElementById('gate-mode').classList.add('text-on-surface-variant');
+        });
+
+        // Flashlight toggle simulation
+        let flashOn = false;
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.querySelector('.material-symbols-outlined')?.textContent === 'flashlight_on') {
+                btn.addEventListener('click', function() {
+                    flashOn = !flashOn;
+                    this.classList.toggle('bg-yellow-400', flashOn);
+                    this.classList.toggle('text-black', flashOn);
+                    this.querySelector('.material-symbols-outlined').textContent = flashOn ? 'flashlight_off' : 'flashlight_on';
+                });
+            }
+        });
+    </script>
+</body></html>

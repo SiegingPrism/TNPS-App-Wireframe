@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Late Comers | TNPS Admin</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "tertiary-fixed-dim": "#4edea3",
+                  "surface-dim": "#d8dadc",
+                  "tertiary-fixed": "#6ffbbe",
+                  "error-container": "#ffdad6",
+                  "background": "#f7f9fb",
+                  "primary-container": "#6063ee",
+                  "outline-variant": "#c7c4d7",
+                  "surface-container-lowest": "#ffffff",
+                  "primary-fixed": "#e1e0ff",
+                  "primary": "#4648d4",
+                  "on-error": "#ffffff",
+                  "surface-container-highest": "#e0e3e5",
+                  "on-surface": "#191c1e",
+                  "on-secondary-container": "#514f81",
+                  "secondary": "#5b598c",
+                  "inverse-on-surface": "#eff1f3",
+                  "surface-variant": "#e0e3e5",
+                  "on-background": "#191c1e",
+                  "tertiary-container": "#00885d",
+                  "on-primary": "#ffffff",
+                  "secondary-fixed": "#e3dfff",
+                  "surface-container-low": "#f2f4f6",
+                  "inverse-surface": "#2d3133",
+                  "surface-variant": "#e0e3e5",
+                  "on-background": "#191c1e",
+                  "tertiary-container": "#00885d",
+                  "on-primary": "#ffffff",
+                  "secondary-fixed": "#e3dfff",
+                  "surface-container-low": "#f2f4f6",
+                  "inverse-surface": "#2d3133",
+                  "surface-container-high": "#e6e8ea",
+                  "surface": "#f7f9fb",
+                  "on-tertiary-container": "#000703",
+                  "on-surface-variant": "#464554",
+                  "outline": "#767586",
+                  "surface-container": "#eceef0",
+                  "on-tertiary-fixed": "#002113",
+                  "error": "#ba1a1a",
+                  "surface-tint": "#494bd6",
+                  "on-secondary": "#ffffff",
+                  "on-tertiary-fixed-variant": "#005236",
+                  "on-primary-fixed": "#07006c",
+                  "secondary-container": "#c7c3fe",
+                  "on-primary-fixed-variant": "#2f2ebe",
+                  "on-error-container": "#93000a",
+                  "secondary-fixed-dim": "#c4c1fb",
+                  "on-tertiary": "#ffffff",
+                  "on-primary-container": "#fffbff",
+                  "inverse-primary": "#c0c1ff",
+                  "tertiary": "#006c49",
+                  "on-secondary-fixed": "#181445",
+                  "surface-bright": "#f7f9fb",
+                  "primary-fixed-dim": "#c0c1ff",
+                  "on-secondary-fixed-variant": "#444173"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "touch-target": "2.75rem",
+                  "container-margin": "1rem",
+                  "stack-gap": "1rem",
+                  "card-padding": "1.25rem",
+                  "section-gap": "1.5rem"
+          },
+          "fontFamily": {
+                  "headline-sm": ["Plus Jakarta Sans"],
+                  "display-lg": ["Plus Jakarta Sans"],
+                  "headline-md": ["Plus Jakarta Sans"],
+                  "label-md": ["Inter"],
+                  "display-lg-mobile": ["Plus Jakarta Sans"],
+                  "body-lg": ["Inter"],
+                  "body-md": ["Inter"],
+                  "label-lg": ["Inter"]
+          },
+          "fontSize": {
+                  "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                  "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                  "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                  "label-md": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                  "display-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                  "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                  "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                  "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      line-height: 1;
+    }
+    body {
+      background-color: #f7f9fb;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #c7c4d7;
+      border-radius: 10px;
+    }
+    /* Smooth transition for active states */
+    .nav-item-active {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- Top App Bar (Header) -->
+<header class="w-full top-0 sticky z-40 bg-surface border-b border-outline-variant flex justify-between items-center px-container-margin h-touch-target">
+<div class="flex items-center gap-3">
+<button onclick="window.location.href='../../admindashboard/code.html'" class="p-2 hover:bg-surface-container-high rounded-full transition-colors active:opacity-80">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-primary">Late Comers</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed cursor-pointer active:scale-95 transition-transform">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a corporate security administrator, wearing a sharp dark indigo uniform. The lighting is soft and professional with a clean, high-key office background. The aesthetic is modern, trustworthy, and minimal, reflecting an institutional leadership persona with a friendly but firm expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9AbX_ufBuvaZvDTf0tH1cEHJ02Rq3y_KNC0bh4MTRLgGzSxfJxE-wFlanvG-fTZLx4WzOo1UouyLX26GbHncuaDzbk20qgOi2ivnUaA5VbPP7H0GXvVLKwG4dnE1VWACfF0mGSFYlK3KslsQpuNqXUisDonU8sP4H9CVxTYzOcW20pA-sVCGq-YIwal6YWD_0zwZ36ADghyGLzDh5VJGJ7w-s2gULkMNHfd5b50PYkL9MkfePc-wT"/>
+</div>
+</header>
+<main class="pb-24 pt-4 px-container-margin max-w-[1200px] mx-auto">
+<!-- Bento Metric Cards -->
+<section class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-outline-variant flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-lg text-label-lg uppercase tracking-wider">Late Today</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">timer</span>
+</div>
+<div class="mt-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">42</h2>
+<p class="text-label-md font-label-md text-tertiary mt-1">● Live tracking</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-outline-variant flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-lg text-label-lg uppercase tracking-wider">Weekly Trend</span>
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<div class="mt-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">+12%</h2>
+<p class="text-label-md font-label-md text-error mt-1">Higher than last week</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-outline-variant flex flex-col justify-between col-span-2 md:col-span-1">
+<div class="flex justify-between items-start">
+<span class="text-on-surface-variant font-label-lg text-label-lg uppercase tracking-wider">Major Bottleneck</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">door_front</span>
+</div>
+<div class="mt-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">North Gate</h2>
+<p class="text-label-md font-label-md text-on-surface-variant mt-1">65% of late entries</p>
+</div>
+</div>
+</section>
+<!-- Search and Filter Bar -->
+<div class="flex flex-col gap-3 mb-6">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full h-12 pl-10 pr-4 bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" placeholder="Search by Student UID or Gate..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-1 custom-scrollbar">
+<button class="whitespace-nowrap px-4 py-2 bg-primary text-on-primary rounded-full font-label-lg text-label-lg shadow-md active:scale-95 transition-transform">All Entries</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-lg text-label-lg hover:bg-outline-variant active:scale-95 transition-transform">North Gate</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-lg text-label-lg hover:bg-outline-variant active:scale-95 transition-transform">South Gate</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-lg text-label-lg hover:bg-outline-variant active:scale-95 transition-transform">Main Campus</button>
+</div>
+</div>
+<!-- Live Feed Header -->
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+        Live Feed
+        <span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+</h3>
+<span class="text-label-md font-label-md text-outline uppercase tracking-widest">Showing 24 Entries</span>
+</div>
+<!-- Feed Content -->
+<div class="space-y-4">
+<!-- Entry Card 1 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-outline-variant hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start mb-3">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">Aarav Sharma</p>
+<p class="font-label-md text-label-md text-on-surface-variant tracking-wider">UID: STU-2024-0891</p>
+</div>
+</div>
+<span class="bg-tertiary-fixed-dim/20 text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-label-md font-bold uppercase tracking-tighter">First Warning</span>
+</div>
+<div class="grid grid-cols-2 gap-y-2 py-3 border-y border-outline-variant/30 mb-4 text-body-md">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>Entry: 08:42 AM</span>
+</div>
+<div class="flex items-center gap-2 text-error font-medium">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span>+12 mins late</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">door_front</span>
+<span>North Gate</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Today</span>
+</div>
+</div>
+<button class="w-full h-11 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[20px]">notification_important</span>
+          Issue Warning
+        </button>
+</div>
+<!-- Entry Card 2 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-outline-variant hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-start mb-3">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">person</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">Priya Patel</p>
+<p class="font-label-md text-label-md text-on-surface-variant tracking-wider">UID: STU-2024-1102</p>
+</div>
+</div>
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-label-md font-bold uppercase tracking-tighter">Final Warning</span>
+</div>
+<div class="grid grid-cols-2 gap-y-2 py-3 border-y border-outline-variant/30 mb-4 text-body-md">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>Entry: 09:15 AM</span>
+</div>
+<div class="flex items-center gap-2 text-error font-medium">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span>+45 mins late</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">door_front</span>
+<span>Main Gate</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Today</span>
+</div>
+</div>
+<button class="w-full h-11 bg-error text-on-error rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[20px]">gavel</span>
+          Take Discipline Action
+        </button>
+</div>
+<!-- Entry Card 3 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl shadow-sm border border-outline-variant hover:border-primary/30 transition-colors opacity-80">
+<div class="flex justify-between items-start mb-3">
+<div class="flex gap-3">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">person</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">Rohan Verma</p>
+<p class="font-label-md text-label-md text-on-surface-variant tracking-wider">UID: STU-2024-0433</p>
+</div>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-md font-bold uppercase tracking-tighter">Parent Notified</span>
+</div>
+<div class="grid grid-cols-2 gap-y-2 py-3 border-y border-outline-variant/30 mb-4 text-body-md">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>Entry: 08:35 AM</span>
+</div>
+<div class="flex items-center gap-2 text-error font-medium">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span>+5 mins late</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">door_front</span>
+<span>South Gate</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">done_all</span>
+<span>Processed</span>
+</div>
+</div>
+<button class="w-full h-11 border border-primary text-primary rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+          View Case History
+        </button>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Bar -->
+
+<script>
+    // Micro-interactions for Action Buttons
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', function(e) {
+        if(this.innerText.includes('Issue Warning')) {
+          const originalText = this.innerHTML;
+          this.innerHTML = `<span class="material-symbols-outlined animate-spin">refresh</span> Processing...`;
+          this.classList.add('opacity-70', 'pointer-events-none');
+          
+          setTimeout(() => {
+            this.innerHTML = `<span class="material-symbols-outlined">check_circle</span> Warning Issued`;
+            this.classList.replace('bg-primary', 'bg-tertiary');
+          }, 1500);
+        }
+      });
+    });
+
+    // Simple scroll behavior for top bar shadow
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 10) {
+        header.classList.add('shadow-md');
+      } else {
+        header.classList.remove('shadow-md');
+      }
+    });
+  </script>
+</body></html>

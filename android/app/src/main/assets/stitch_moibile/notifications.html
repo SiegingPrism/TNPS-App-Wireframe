@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CampusPass - Notifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#4edea3",
+                        "outline": "#767586",
+                        "on-tertiary-container": "#000703",
+                        "on-tertiary-fixed": "#002113",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-container": "#514f81",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f7f9fb",
+                        "on-secondary-fixed-variant": "#444173",
+                        "background": "#f7f9fb",
+                        "secondary-container": "#c7c3fe",
+                        "surface-container": "#eceef0",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#07006c",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#4648d4",
+                        "on-surface-variant": "#464554",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#c0c1ff",
+                        "secondary-fixed": "#e3dfff",
+                        "secondary": "#5b598c",
+                        "primary-fixed": "#e1e0ff",
+                        "surface-dim": "#d8dadc",
+                        "outline-variant": "#c7c4d7",
+                        "tertiary": "#006c49",
+                        "on-primary-container": "#fffbff",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "surface-variant": "#e0e3e5",
+                        "on-surface": "#191c1e",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed-dim": "#c4c1fb",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#181445",
+                        "on-background": "#191c1e",
+                        "surface-tint": "#494bd6",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-low": "#f2f4f6",
+                        "surface": "#f7f9fb",
+                        "tertiary-container": "#00885d",
+                        "primary-container": "#6063ee",
+                        "on-tertiary-fixed-variant": "#005236"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "1rem",
+                        "stack-gap": "1rem",
+                        "section-gap": "1.5rem",
+                        "card-padding": "1.25rem",
+                        "touch-target": "2.75rem"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-lg": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "display-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-lg": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased md:max-w-[1200px] md:mx-auto min-h-screen flex flex-col pt-16 pb-24 md:pb-0 md:pt-0">
+<!-- Mobile Top App Bar -->
+<header class="md:hidden bg-background dark:bg-background fixed top-0 w-full z-50 flex justify-between items-center px-container-margin h-touch-target">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A small, professional user avatar portrait of a student in a corporate light-mode setting. Crisp, sharp features, well-lit. Minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvj-nPCMqC7M641YI6kx4yatXrpXwO3gvVrcDOAPl96oiisc87veb3rScFkviURO32T7DNezWDO3AFV67GSY-AzPHPha_peHpp0B29wFgKS62J43SyW4i2J-5S--mbKK-ktK1eFo2WQOJljfvVcVVA00x7kTv5pnaD4sn2CXZE5O2aaYNydYcnU6DVxHg9VgcQneZojtxyOQo3yP2nLVViSc2s1sjrliqfq0BVv2e1FeBGyty-tsk-GTXAiErt7ploOL0zkrNrp_c"/>
+<h1 class="font-headline-md text-headline-md text-primary font-bold">CampusPass</h1>
+</div>
+<a href="notifications.html" class="w-10 h-10 flex items-center justify-center text-primary active:scale-95 transition-transform hover:bg-surface-container-high rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+</a>
+</header>
+<div class="flex flex-1 relative">
+<!-- Desktop Side Nav (Hidden on Mobile) -->
+<nav class="hidden md:flex flex-col w-[280px] bg-surface-container-lowest border-r border-surface-variant fixed h-screen top-0 left-0">
+<div class="p-6 flex items-center gap-3 border-b border-surface-variant">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">Gate Pass</span>
+</div>
+<div class="flex-1 py-6 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-lg" href="dashboard.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-lg" href="dashboard.html">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                    My Profile
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-lg" href="attendance.html">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+                    Attendance
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-lg" href="pass_history.html">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                    Pass History
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-lg" href="request_pass.html">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+                    Request Pass
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 text-primary font-label-lg" href="notifications.html">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+                    Notifications
+                </a>
+</div>
+<div class="p-4 border-t border-surface-variant">
+<div class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A small, professional user avatar portrait of a student in a corporate light-mode setting. Crisp, sharp features, well-lit. Minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbWifR63yFNvwMde9iozl00fPD5BiSEL93wdGpXFvmYWIglFeIkHBh1X5lvVP1CfpPiF-09su_vLO2oX0m5bzOTUx3rWcRuGjtEXedlgftTJ3CDomRwNSScuCyj30L1GAUQx20W_ZkmeKC-5SeacwgvZFnKdPVZYP9LWbF2wZa4-_HuqTYyYAgRa3ZGd3v-osEwzI-FDSiAIThllJTp8fzbw7cDpRTrMxzAB72mjlmfgPnXTEHKO6S3Kg2Y584BaRXubsi8LVBcEs"/>
+<div>
+<div class="font-label-lg text-on-surface">ISHAN BASSIN</div>
+<div class="text-xs text-on-surface-variant">24003128</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 w-full md:ml-[280px] p-4 md:p-8 flex flex-col gap-6">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-surface-container-lowest p-6 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-variant/50">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">Notifications</h2>
+<p class="text-on-surface-variant text-sm">Stay updated with your pass approvals and announcements</p>
+</div>
+<button class="hidden md:flex items-center gap-2 bg-secondary text-on-secondary px-4 py-2 rounded-lg font-label-lg hover:bg-secondary/90 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+                    Logout
+                </button>
+</div>
+<!-- Filters -->
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-variant/50 overflow-x-auto gap-4">
+<div class="flex items-center gap-2 text-on-surface font-label-lg whitespace-nowrap">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+                    Filter
+                </div>
+<div class="flex items-center gap-2">
+<button class="px-4 py-1.5 rounded-full bg-primary text-on-primary font-label-lg whitespace-nowrap shadow-sm shadow-primary/20">All</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-colors font-label-lg whitespace-nowrap">Pass Updates</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-colors font-label-lg whitespace-nowrap">Announcements</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface-variant transition-colors font-label-lg whitespace-nowrap">System</button>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<!-- All Notifications Section (Empty State) -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-variant/50 overflow-hidden">
+<div class="px-6 py-4 border-b border-surface-variant/50 flex items-center gap-2 bg-surface-bright">
+<span class="material-symbols-outlined text-primary" data-icon="notifications">notifications</span>
+<h3 class="font-label-lg text-on-surface">All Notifications</h3>
+</div>
+<div class="p-12 flex flex-col items-center justify-center text-center">
+<div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-4 text-outline">
+<span class="material-symbols-outlined text-[32px]" data-icon="notifications_off">notifications_off</span>
+</div>
+<h4 class="font-headline-sm text-on-surface mb-2">No Notifications</h4>
+<p class="text-on-surface-variant text-sm">You're all caught up! New notifications will appear here.</p>
+</div>
+</section>
+<!-- Admin Announcements Section (Empty State) -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-variant/50 overflow-hidden">
+<div class="px-6 py-4 border-b border-surface-variant/50 flex items-center gap-2 bg-surface-bright">
+<span class="material-symbols-outlined text-primary" data-icon="campaign">campaign</span>
+<h3 class="font-label-lg text-on-surface">Admin Announcements</h3>
+</div>
+<div class="p-12 flex flex-col items-center justify-center text-center">
+<div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-4 text-outline">
+<span class="material-symbols-outlined text-[32px]" data-icon="campaign">campaign</span>
+</div>
+<h4 class="font-headline-sm text-on-surface mb-2">No Announcements</h4>
+<p class="text-on-surface-variant text-sm">There are no announcements at the moment.</p>
+</div>
+</section>
+<!-- System Notifications Section -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-surface-variant/50 overflow-hidden">
+<div class="px-6 py-4 border-b border-surface-variant/50 flex items-center gap-2 bg-surface-bright">
+<span class="material-symbols-outlined text-primary" data-icon="info">info</span>
+<h3 class="font-label-lg text-on-surface">System Notifications</h3>
+</div>
+<div class="p-4 md:p-6 flex flex-col gap-4">
+<!-- Notification Card 1 -->
+<div class="flex items-start gap-4 p-4 rounded-xl bg-surface-bright border-l-4 border-tertiary shadow-sm transition-transform hover:-translate-y-0.5">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex-shrink-0 flex items-center justify-center text-tertiary mt-1">
+<span class="material-symbols-outlined" data-icon="schedule" style="font-variation-settings: 'FILL' 1;">schedule</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-lg text-on-surface mb-1">Hostel Timings</h4>
+<p class="text-on-surface-variant text-sm mb-2 leading-relaxed">Please ensure you return to hostel before the designated closing time. Late entries will be recorded and may affect your pass privileges.</p>
+<span class="text-xs text-outline font-medium">General Reminder</span>
+</div>
+</div>
+<!-- Notification Card 2 -->
+<div class="flex items-start gap-4 p-4 rounded-xl bg-surface-bright border-l-4 border-primary shadow-sm transition-transform hover:-translate-y-0.5">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex-shrink-0 flex items-center justify-center text-primary mt-1">
+<span class="material-symbols-outlined" data-icon="badge" style="font-variation-settings: 'FILL' 1;">badge</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-lg text-on-surface mb-1">Always Carry ID Card</h4>
+<p class="text-on-surface-variant text-sm mb-2 leading-relaxed">Please always carry your student ID card when exiting the campus. It is mandatory for gate pass verification.</p>
+<span class="text-xs text-outline font-medium">General Reminder</span>
+</div>
+</div>
+<!-- Notification Card 3 -->
+<div class="flex items-start gap-4 p-4 rounded-xl bg-surface-bright border-l-4 border-secondary shadow-sm transition-transform hover:-translate-y-0.5">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex-shrink-0 flex items-center justify-center text-secondary mt-1">
+<span class="material-symbols-outlined" data-icon="call" style="font-variation-settings: 'FILL' 1;">call</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-lg text-on-surface mb-1">Emergency Contact</h4>
+<p class="text-on-surface-variant text-sm mb-2 leading-relaxed">In case of any emergency while outside the campus, please contact the hostel warden immediately.</p>
+<span class="text-xs text-outline font-medium">General Information</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Nav Bar -->
+<nav class="md:hidden bg-surface-container-lowest dark:bg-surface-container-lowest shadow-[0_-4px_20px_rgba(0,0,0,0.05)] fixed bottom-0 w-full z-50 rounded-t-xl flex justify-around items-center h-20 px-2 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg p-2 min-w-[64px]" href="dashboard.html">
+<span class="material-symbols-outlined mb-1" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg p-2 min-w-[64px]" href="request_pass.html">
+<span class="material-symbols-outlined mb-1" data-icon="confirmation_number">confirmation_number</span>
+<span class="font-label-md text-label-md">Passes</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg p-2 min-w-[64px]" href="pass_history.html">
+<span class="material-symbols-outlined mb-1" data-icon="history">history</span>
+<span class="font-label-md text-label-md">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg p-2 min-w-[64px]" href="attendance.html">
+<span class="material-symbols-outlined mb-1" data-icon="event_available">event_available</span>
+<span class="font-label-md text-label-md">Attendance</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg p-2 min-w-[64px]" href="room_booking.html">
+<span class="material-symbols-outlined mb-1" data-icon="meeting_room">meeting_room</span>
+<span class="font-label-md text-label-md">Rooms</span>
+</a>
+</nav>
+<style>
+        /* Support for devices with safe area (like iPhone X and newer) */
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            .pb-safe {
+                padding-bottom: env(safe-area-inset-bottom);
+                height: calc(5rem + env(safe-area-inset-bottom));
+            }
+        }
+    </style>
+</body></html>

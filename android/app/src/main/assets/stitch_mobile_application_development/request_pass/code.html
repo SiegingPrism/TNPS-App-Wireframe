@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Request Pass</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#4edea3",
+                        "outline": "#767586",
+                        "on-tertiary-container": "#000703",
+                        "on-tertiary-fixed": "#002113",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-container": "#514f81",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f7f9fb",
+                        "on-secondary-fixed-variant": "#444173",
+                        "background": "#f7f9fb",
+                        "secondary-container": "#c7c3fe",
+                        "surface-container": "#eceef0",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#07006c",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#4648d4",
+                        "on-surface-variant": "#464554",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#c0c1ff",
+                        "secondary-fixed": "#e3dfff",
+                        "secondary": "#5b598c",
+                        "primary-fixed": "#e1e0ff",
+                        "surface-dim": "#d8dadc",
+                        "outline-variant": "#c7c4d7",
+                        "tertiary": "#006c49",
+                        "on-primary-container": "#fffbff",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "surface-variant": "#e0e3e5",
+                        "on-surface": "#191c1e",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-fixed-dim": "#c4c1fb",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#181445",
+                        "on-background": "#191c1e",
+                        "surface-tint": "#494bd6",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-low": "#f2f4f6",
+                        "surface": "#f7f9fb",
+                        "tertiary-container": "#00885d",
+                        "primary-container": "#6063ee",
+                        "on-tertiary-fixed-variant": "#005236"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "1rem",
+                        "stack-gap": "1rem",
+                        "section-gap": "1.5rem",
+                        "card-padding": "1.25rem",
+                        "touch-target": "2.75rem"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-lg": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "display-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-lg": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md pb-24 min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background flex justify-between items-center px-container-margin h-touch-target">
+<div class="flex items-center gap-2 text-primary font-headline-md font-bold">
+<span class="material-symbols-outlined fill text-2xl">verified_user</span>
+            CampusPass
+        </div>
+<div class="flex items-center gap-3">
+<button class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A small, professional headshot of a student against a neutral background. The lighting is soft and even, highlighting a clean and approachable expression suitable for an ID photo. High quality, well lit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuhUdKrGCjMe6UtbZBokPTjtJGuJUkPMwjmLnDX9ZKwbhQ7BT2hJadIW3dXKVUtCAm9EEaS-vn1NwrAgE56v14TjkzA8euU_xCe7YbfOH45ET10Sx7a7sgiBfslvwayJ-rR3leoxnsDLWT1zanNGybiQ1NGKrIoO6zu6mK8eEWYrQE_PeYw6e8sj6YeNfWPK8AQiHkYbOy7TB3soUbiu7J0ItgdXOfq4XJi0jInIzSYOZwTPHRmvni7dr0Yu7akgYRSaxfH4s1oI8"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-16 px-container-margin flex flex-col gap-section-gap max-w-lg mx-auto">
+<!-- Header -->
+<section>
+<h1 class="font-headline-sm text-headline-sm text-on-background mb-1">Request Pass</h1>
+<p class="font-body-md text-body-md text-outline">Submit a new pass request for approval</p>
+</section>
+<!-- Form Container -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-card-padding flex flex-col gap-stack-gap">
+<div class="flex items-center gap-2 border-b border-surface-container pb-3 mb-2">
+<span class="material-symbols-outlined text-primary text-xl">description</span>
+<h2 class="font-label-lg text-label-lg text-on-surface">New Pass Request</h2>
+</div>
+<!-- Pre-filled Info (Read Only appearance) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-gap">
+<div class="flex flex-col gap-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-base">person</span> Student Name
+                    </label>
+<div class="bg-surface-container-low text-on-surface font-body-md px-3 py-2 rounded-lg border border-transparent">Ishan Bassin</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-base">badge</span> Student UID
+                    </label>
+<div class="bg-surface-container-low text-on-surface font-body-md px-3 py-2 rounded-lg border border-transparent">24003128</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-base">domain</span> Department
+                    </label>
+<div class="bg-surface-container-low text-on-surface font-body-md px-3 py-2 rounded-lg border border-transparent">Computer Engineering</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-base">call</span> Contact Number
+                    </label>
+<div class="bg-surface-container-low text-on-surface font-body-md px-3 py-2 rounded-lg border border-transparent">7038033151</div>
+</div>
+</div>
+<!-- Interactive Form Fields -->
+<form class="flex flex-col gap-stack-gap mt-4">
+<div class="flex flex-col gap-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-base">confirmation_number</span> Pass Type *
+                    </label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-3 font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary appearance-none">
+<option disabled="" selected="" value="">Select Pass Type</option>
+<option value="city">City Pass</option>
+<option value="home">Home Pass</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-gap">
+<div class="flex flex-col gap-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-base">calendar_today</span> Expected Out Date *
+                        </label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-3 font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary text-sm" type="date"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-base">schedule</span> Expected Out Time *
+                        </label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-3 font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary text-sm" type="time"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-gap">
+<div class="flex flex-col gap-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-base">event_repeat</span> Expected Return Date *
+                        </label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-3 font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary text-sm" type="date"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-base">history_toggle_off</span> Expected Return Time *
+                        </label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-3 font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary text-sm" type="time"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-base">location_on</span> Destination/Purpose *
+                    </label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-3 font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary resize-none" placeholder="Enter your destination and purpose of visit..." rows="3"></textarea>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-lg text-label-lg text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-base">contact_phone</span> Emergency Contact Number *
+                    </label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-3 font-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary" type="tel" value="7020046788"/>
+</div>
+<!-- Info Note -->
+<div class="bg-surface-container rounded-lg p-3 flex items-start gap-2 mt-2">
+<span class="material-symbols-outlined text-primary text-lg shrink-0 mt-0.5">info</span>
+<p class="font-label-md text-label-md text-on-surface-variant leading-relaxed">
+<span class="font-bold text-on-surface">Note:</span> Your pass request will be reviewed by the hostel authority. You will receive a notification once it's approved. Make sure to collect your pass from the hostel office before leaving.
+                    </p>
+</div>
+<button class="mt-4 w-full bg-primary text-on-primary h-touch-target rounded-lg font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-primary-container transition-colors shadow-md active:scale-95" type="button">
+<span class="material-symbols-outlined text-lg">send</span>
+                    Submit Request
+                </button>
+</form>
+</section>
+<!-- Guidelines Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] p-card-padding flex flex-col gap-stack-gap mb-8">
+<div class="flex items-center gap-2 border-b border-surface-container pb-3">
+<span class="material-symbols-outlined text-on-surface text-xl">rule</span>
+<h2 class="font-label-lg text-label-lg text-on-surface">Pass Guidelines</h2>
+</div>
+<div class="flex flex-col gap-3">
+<div class="bg-secondary-fixed text-on-secondary-fixed rounded-lg p-3 border border-secondary-fixed-dim">
+<h3 class="font-label-lg text-label-lg flex items-center gap-1 mb-2 text-primary">
+<span class="material-symbols-outlined text-base">location_city</span> City Pass
+                    </h3>
+<ul class="list-disc list-inside font-label-md text-label-md flex flex-col gap-1 text-on-surface-variant pl-1">
+<li>For short visits within the city</li>
+<li>Maximum duration: Same day return</li>
+<li>Must return before hostel closing time</li>
+<li>Restricted students cannot apply</li>
+</ul>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed rounded-lg p-3 border border-tertiary-fixed-dim">
+<h3 class="font-label-lg text-label-lg flex items-center gap-1 mb-2 text-tertiary">
+<span class="material-symbols-outlined text-base">home</span> Home Pass
+                    </h3>
+<ul class="list-disc list-inside font-label-md text-label-md flex flex-col gap-1 text-on-surface-variant pl-1">
+<li>For visiting home/hometown</li>
+<li>Requires parent contact verification</li>
+<li>Submit request at least 24 hours before</li>
+<li>Extended stays require special approval</li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+
+</body></html>

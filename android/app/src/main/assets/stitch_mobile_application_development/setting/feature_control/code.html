@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TNPS - Feature Control</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#4edea3",
+                    "inverse-surface": "#2d3133",
+                    "surface-variant": "#e0e3e5",
+                    "inverse-primary": "#c0c1ff",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#6063ee",
+                    "on-surface": "#191c1e",
+                    "on-primary-fixed-variant": "#2f2ebe",
+                    "surface-container-highest": "#e0e3e5",
+                    "tertiary": "#006c49",
+                    "outline-variant": "#c7c4d7",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#514f81",
+                    "on-secondary-fixed": "#181445",
+                    "on-background": "#191c1e",
+                    "surface-container-low": "#f2f4f6",
+                    "surface": "#f7f9fb",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#c7c3fe",
+                    "tertiary-fixed": "#6ffbbe",
+                    "surface-dim": "#d8dadc",
+                    "on-surface-variant": "#464554",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#444173",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#494bd6",
+                    "surface-bright": "#f7f9fb",
+                    "on-primary-container": "#fffbff",
+                    "on-primary-fixed": "#07006c",
+                    "inverse-on-surface": "#eff1f3",
+                    "secondary-fixed-dim": "#c4c1fb",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "primary-fixed": "#e1e0ff",
+                    "background": "#f7f9fb",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "surface-container": "#eceef0",
+                    "on-error": "#ffffff",
+                    "outline": "#767586",
+                    "on-tertiary-fixed": "#002113",
+                    "secondary": "#5b598c",
+                    "surface-container-high": "#e6e8ea",
+                    "primary": "#4648d4",
+                    "secondary-fixed": "#e3dfff",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#00885d",
+                    "on-tertiary-container": "#000703"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-gap": "1rem",
+                    "section-gap": "1.5rem",
+                    "container-margin": "1rem",
+                    "touch-target": "2.75rem",
+                    "card-padding": "1.25rem"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-lg": ["Inter"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-lg": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #f7f9fb; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .toggle-switch:checked + .toggle-bg { background-color: #4648d4; }
+        .toggle-switch:checked + .toggle-bg::after { transform: translateX(1.25rem); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e0e3e5; border-radius: 10px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline flex justify-between items-center px-container-margin h-touch-target">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed text-2xl" data-icon="security">security</span>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary dark:text-primary-fixed tracking-tight">TNPS</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-high p-2 rounded-full transition-colors" data-icon="search">search</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant cursor-pointer active:opacity-80">
+<img class="w-full h-full object-cover" data-alt="A professional corporate headshot of a campus administrator in a bright, modern office setting. The lighting is soft and natural, emphasizing trust and authority. The aesthetic is clean and minimal, reflecting a high-end educational institution's management persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvgkEoFduYh2AlExxa3vKvU8vvKo_U132Ui0OLIXLYPoPZUyQ4owGbUBydqIsbWJUddMFC9ydeDWZQTbeQFROiika5jBvUVZK5wd68KdCtf0jIpWw337bX71kLE-h1vKWZUOmC9o1Wv_7xkmXsuP4jplSAZeMcBUhcoVii-nCPvgjYvPqiKA92rvr2WXoCxPiw3NP6Qs8fJlt0EKQBXZ4P_zYV5SQcaIDur49WEuZb0AvULOJTaUWA"/>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-container-margin py-8 pb-32">
+<header class="mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Feature Control</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage campus-wide modules and institutional notification protocols.</p>
+</header>
+<!-- Bento Grid Layout for Settings -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- System Modules Block -->
+<section class="md:col-span-8 space-y-6">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+<div class="p-card-padding border-b border-outline-variant bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Active Modules</h3>
+<p class="font-label-lg text-label-lg text-on-surface-variant uppercase mt-1">Operational Controls</p>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Module: Bonafide Requests -->
+<div class="p-card-padding flex items-center justify-between hover:bg-surface-container-low transition-all">
+<div class="flex gap-4 items-start">
+<div class="w-10 h-10 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface">Bonafide Requests</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Automated student identity verification for external institutions.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only toggle-switch" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant rounded-full transition-colors toggle-bg after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+</label>
+</div>
+<!-- Module: Sick Leave -->
+<div class="p-card-padding flex items-center justify-between hover:bg-surface-container-low transition-all">
+<div class="flex gap-4 items-start">
+<div class="w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface">Sick Leave</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Medical leave reporting and campus clinic integration.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only toggle-switch" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant rounded-full transition-colors toggle-bg after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+</label>
+</div>
+<!-- Module: Room Booking -->
+<div class="p-card-padding flex items-center justify-between hover:bg-surface-container-low transition-all">
+<div class="flex gap-4 items-start">
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="meeting_room">meeting_room</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface">Room Booking</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Centralized reservation system for auditoriums and study halls.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only toggle-switch" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant rounded-full transition-colors toggle-bg after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Notification Protocols -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-card-padding">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6">Notification Preferences</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-4 border border-outline-variant rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="mail">mail</span>
+<span class="font-body-md">Email Digests</span>
+</div>
+<input checked="" class="rounded text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+</div>
+<div class="p-4 border border-outline-variant rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="sms">sms</span>
+<span class="font-body-md">SMS Critical Alerts</span>
+</div>
+<input checked="" class="rounded text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+</div>
+<div class="p-4 border border-outline-variant rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications_active">notifications_active</span>
+<span class="font-body-md">Push Notifications</span>
+</div>
+<input class="rounded text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+</div>
+<div class="p-4 border border-outline-variant rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="history_edu">history_edu</span>
+<span class="font-body-md">System Logs</span>
+</div>
+<input checked="" class="rounded text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Sidebar / Stats Block -->
+<aside class="md:col-span-4 space-y-6">
+<!-- System Health Card -->
+<div class="bg-primary text-on-primary rounded-xl p-card-padding relative overflow-hidden shadow-md">
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-6xl" data-icon="monitoring">monitoring</span>
+</div>
+<div class="relative z-10">
+<h4 class="font-label-lg text-label-lg uppercase tracking-wider mb-2 opacity-80">System Health</h4>
+<p class="font-headline-md text-headline-md">Optimal</p>
+<div class="mt-4 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed animate-pulse"></span>
+<span class="font-label-md text-label-md">All services operational</span>
+</div>
+</div>
+</div>
+<!-- Recent Activity -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-card-padding">
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-4">Registry Logs</h4>
+<div class="space-y-4 max-h-[300px] overflow-y-auto custom-scrollbar pr-2">
+<div class="flex gap-3 pb-3 border-b border-outline-variant">
+<div class="text-primary mt-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit_note">edit_note</span>
+</div>
+<div>
+<p class="font-body-md text-on-surface leading-snug">Room Booking disabled by Admin 02</p>
+<span class="font-label-md text-on-surface-variant">2 mins ago</span>
+</div>
+</div>
+<div class="flex gap-3 pb-3 border-b border-outline-variant">
+<div class="text-tertiary mt-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="task_alt">task_alt</span>
+</div>
+<div>
+<p class="font-body-md text-on-surface leading-snug">Sick Leave module updated to v2.4</p>
+<span class="font-label-md text-on-surface-variant">1 hour ago</span>
+</div>
+</div>
+<div class="flex gap-3 pb-3 border-b border-outline-variant">
+<div class="text-secondary mt-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="person_search">person_search</span>
+</div>
+<div>
+<p class="font-body-md text-on-surface leading-snug">New verification rule applied to Bonafide</p>
+<span class="font-label-md text-on-surface-variant">3 hours ago</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 py-2 font-label-lg text-label-lg text-primary border border-primary rounded-lg hover:bg-primary/5 transition-colors">
+                        View Full Audit Trail
+                    </button>
+</div>
+<!-- Security Warning -->
+<div class="bg-error-container text-on-error-container rounded-xl p-card-padding border border-error/20">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+<div>
+<h5 class="font-label-lg text-label-lg font-bold">Admin Privileges</h5>
+<p class="font-body-md text-body-md mt-1 opacity-90">Disabling core modules may affect gate pass issuance. Proceed with caution.</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Global Save Action -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 w-full max-w-[400px] px-container-margin z-40 md:static md:translate-x-0 md:max-w-none md:mt-12 md:p-0">
+<div class="bg-surface-container-lowest p-4 rounded-full shadow-lg border border-outline-variant flex items-center justify-between md:rounded-xl md:shadow-none md:border-none md:bg-transparent">
+<p class="hidden md:block font-body-md text-on-surface-variant">You have 2 unsaved changes</p>
+<div class="flex gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-6 py-3 rounded-full md:rounded-lg border border-outline font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+                        Reset Changes
+                    </button>
+<button class="flex-1 md:flex-none px-6 py-3 rounded-full md:rounded-lg bg-primary text-on-primary font-label-lg text-label-lg shadow-md hover:opacity-90 active:scale-95 transition-all">
+                        Apply System Updates
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+
+<script>
+        // Simple micro-interaction for toggle switches
+        const toggles = document.querySelectorAll('.toggle-switch');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const parent = this.closest('.hover\\:bg-surface-container-low');
+                if (this.checked) {
+                    parent.classList.add('ring-2', 'ring-primary/10');
+                    setTimeout(() => parent.classList.remove('ring-2', 'ring-primary/10'), 500);
+                }
+            });
+        });
+
+        // Search button interaction
+        const searchBtn = document.querySelector('[data-icon="search"]');
+        searchBtn.addEventListener('click', () => {
+            const query = prompt('Search settings or module logs:');
+            if (query) console.log('Searching for:', query);
+        });
+    </script>
+</body></html>
